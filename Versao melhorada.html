@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Iuri Silva's professional portfolio as a Data Analyst, Trainer, and Technology Enthusiast.">
+    <meta name="keywords" content="Data Analyst, Trainer, Technology, Portfolio, Iuri Silva">
+    <meta name="author" content="Iuri Silva">
+    <title>Iuri Silva - Portfolio</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            cursor: url('https://cdn.custom-cursor.com/db/cursor/32/Uwu_and_OwOCursor.png'), auto;
+        }
+
+        a:hover, button:hover {
+            cursor: url('https://cdn.custom-cursor.com/db/pointer/32/Uwu_and_OwOPointer.png'), pointer;
+        }
+
+	.linkedin-icon img {
+    width: 20px; /* Adjust icon size */
+    height: 20px;
+    margin-left: 5px; /* Add spacing before the icon */
+    vertical-align: middle; /* Align the icon with the text */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.linkedin-icon img:hover {
+    transform: scale(1.3); /* Slightly enlarge the icon on hover */
+}
+
+        header {
+            background: #4285F4; /* Google's Blue */
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #fff; /* Ensure visibility */
+        }
+
+        nav {
+            background: #333;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav a.active {
+            border-bottom: 2px solid #fff;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        h1, h2 {
+            color: #4285F4;
+        }
+
+	h3 {
+	    font-size: 1.1rem; /* Adjust size as needed */
+            color: #333;
+   	}
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .skills span {
+            display: inline-block;
+            background: #4285F4;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+        }
+
+        .skills span:hover {
+            transform: scale(1.1);
+        }
+
+        .language-proficiency {
+            margin-top: 1rem;
+        }
+
+        .language-bar {
+            background: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .language-bar span {
+            display: block;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .certifications li {
+            background: #eee;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-left: 4px solid #4285F4;
+            position: relative;
+        }
+
+        .certifications li a {
+            color: #4285F4;
+            text-decoration: none;
+        }
+
+        .certifications li a:hover {
+            text-decoration: underline;
+        }
+
+        .quote-box {
+            border-left: 4px solid #4285F4;
+            background: #f9f9f9;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .quote-box .reference-author {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        .project {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-left: 4px solid #4285F4;
+            border-radius: 5px;
+        }
+
+        .project h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project p {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-resources {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .project-resources a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            background: #eee;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: #333;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .project-resources a:hover {
+            background: #4285F4;
+            color: #fff;
+        }
+
+        .project-resources img {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            .skills span {
+                flex: 1 1 calc(50% - 10px);
+            }
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border-radius: 5px;
+        }
+
+        #popup a {
+            display: block;
+            margin: 0.5rem 0;
+            color: #4285F4;
+            text-decoration: none;
+        }
+
+        #popup a:hover {
+            text-decoration: underline;
+        }
+
+        #popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+   <header>
+    <h1>Iuri Silva</h1>
+    <p> Data Analyst | Trainer | Technology Enthusiast </p>
+       <p> <a href="https://www.linkedin.com/in/itsiurisilva/" target="_blank" class="linkedin-icon" title="Visit my LinkedIn Profile">
+            <img src="https://cdn-icons-png.flaticon.com/512/3536/3536569.png" alt="LinkedIn Icon">
+        </a>
+    </p>
+</header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#projects">Projects</a>
+        <a href="#languages">Languages</a>
+        <a href="#references">References</a>
+    </nav>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Dedicated problem solver and reliable Point of Contact in my previous roles, emphasizing a balance between approachability and meticulous information handling. Committed to fostering positive communication and contributing to a stronger work environment.</p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <h3>Personal</h3>
+            <div class="skills">
+                <span>Critical Thinking</span>
+                <span>Problem Solving</span>
+                <span>Team Work</span>
+                <span>Creative</span>
+                <span>Curious</span>
+            </div>
+            <h3>Programming Languages</h3>
+            <div class="skills">
+                <span>SQL</span>
+                <span>R</span>
+                <span>Python</span>
+		<span>Wiring</span>
+		<span>Ladder</span>
+		<span>HTML</span>
+		<span>JavaScript</span>
+		<span>Google Apps Script</span>
+		<span>LabVIEW</span>
+            </div>
+            <h3>Software</h3>
+            <div class="skills">
+                <span>Jira</span>
+                <span>Tableau</span>
+                <span>Slack</span>
+                <span>Salesforce</span>
+                <span>Google Looker</span>
+                <span>BigQuery</span>
+                <span>Visual Studio Code</span>
+                <span>Excel / Google Sheets</span>
+                <span>Power BI</span>
+                <span>Arduino IDE</span>
+                <span>Raspberry PI</span>
+                <span>MATLAB</span>
+                <span>TIA Portal</span>
+                <span>Notepad++</span>
+                <span>NI LabVIEW</span>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <p><strong>ETLA - Escola Tecnológica do Litoral Alentejano</strong> (2015 - 2018)</p>
+            <ul>
+                <li>Specialization in Electronics, Automation, and Instrumentation</li>
+                <li>Sociocultural, Scientific, and Technical components including Math, Physics, Chemistry, Automation, and Digital Systems</li>
+                <li>Internship (3100 hours over 3 years, grade: 19/20)</li>
+            </ul>
+            <p><strong>Google Certification</strong> (Ongoing, 2024)</p>
+            <ul>
+                <li>Field of Study: Data Analyst</li>
+                <li>Premium Teaching & Learning Features</li>
+            </ul>
+        </section>
+
+        <section id="experience">
+            <h2>Professional Experience</h2>
+            <p><strong>Corporate Trainer</strong> at Foundever for Airbnb (2023 - Present)</p>
+            <ul>
+                <li>Conducted training needs assessments to identify skill gaps and developed targeted sessions.</li>
+                <li>Created resources reducing helpdesk tickets and enhanced global team collaboration.</li>
+                <li>Trained and onboarded employees from Portugal, Spain, France, Italy, Germany, and Brazil.</li>
+            </ul>
+            <p><strong>Team Coordination</strong> at Foundever for Airbnb (2022 - 2023)</p>
+            <ul>
+                <li>Acted as central contact point improving communication and productivity.</li>
+                <li>Collaborated with QA teams for pre-deployment testing.</li>
+                <li>Fostered a collaborative and respectful team culture.</li>
+            </ul>
+            <p><strong>Case Manager</strong> at Foundever for Airbnb (2019 - 2022)</p>
+            <ul>
+                <li>Responded to calls, emails, and posts for travel and accommodation support worldwide.</li>
+                <li>Mediated urgent cases and facilitated resolutions under pressure.</li>
+                <li>Enhanced customer satisfaction by building trust and rapport.</li>
+            </ul>
+        </section>
+
+        <section id="certifications">
+            <h2>Certifications</h2>
+            <ul class="certifications">
+                <li><a id="google-cert" href="javascript:void(0);">Google Data Analyst Certificate (4/8 courses completed)</a></li>
+                <li><a href="https://skillshop.exceedlms.com/student/award/nfbi6joa6PGtVexrgHv59c4U" target="_blank">Google Chromebooks for Educators</a></li>
+                <li><a href="https://skillshop.exceedlms.com/student/award/DVQHrUG2pLpENCxqYo5nKxSo" target="_blank">Generative AI for Educators Certificate</a></li>
+                <li><a href="https://skillshop.exceedlms.com/student/award/zZxqW4RQzKm9S3qWsZejXVGv" target="_blank">Premium Teaching & Learning Features</a></li>
+            </ul>
+            <div id="popup">
+                <span id="popup-close">&times;</span>
+                <h3>Google Data Analyst Certificate Details</h3>
+                <a href="https://www.coursera.org/account/accomplishments/verify/XP5UH7KPUT1V" target="_blank">Ask Questions to Make Data-Driven Decisions</a>
+                <a href="https://www.coursera.org/account/accomplishments/verify/3QBSK1ZKP5KB" target="_blank">Foundations: Data, Data, Everywhere</a>
+            </div>
+            <div id="popup-overlay"></div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Etla-Bot</h3>
+                <p>The <b>Etla-BOT</b> is a cutting-edge robotics project combining advanced obstacle detection, audio playback, and motor control, all powered by <b>Arduino technology</b>.</p>
+		<p>Designed and developed by a skilled team of electronics students at the Escola Tecnológica do Litoral Alentejano, this project showcases precision engineering, seamless integration, and practical applications in automation. </p>
+		<p>Featuring ultrasonic sensors, MP3 playback, and efficient DC motor functionality. This Project exemplifies creativity and technical expertise in action.</p>
+                <div class="project-resources">
+                    <a href="https://docs.google.com/presentation/d/1PQ_b34HxGlhA7VSXNhiLK3uxws30FviY2mHWcni65e8/edit?usp=sharing" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/732/732074.png" alt="Summary Icon"> PowerPoint
+                    </a>
+                    <a href="https://drive.google.com/file/d/1vKq0xm7wGG_XNJZDICJFy7IAd8KrHFIT/view?usp=drive_link" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Video Icon"> Video - Fase de Testes
+                    </a>
+                    <a href="https://drive.google.com/file/d/1CLqXmlX2vZFioytrqhHBfenadsT0dJeF/view?usp=drive_link" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Video Icon"> Video - Funcionamento em Laboratório
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages">
+            <h2>Languages</h2>
+            <div class="language-proficiency">
+                <div class="language-bar">
+                    <span style="width: 100%; background: #4285F4;">Portuguese - Native</span>
+                </div>
+                <div class="language-bar">
+                    <span style="width: 100%; background: #4285F4;">English - Native</span>
+                </div>
+                <div class="language-bar">
+                    <span style="width: 25%; background: #4285F4;">Dutch - Beginner</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="references">
+            <h2>References</h2>
+            <div class="quote-box">
+                <p>"Iuri is not only an exceptional human being he is the go-to person for any training that will effectively allow you to perform at 100%."</p>
+                <span class="reference-author">- Samir Pala</span>
+            </div>
+            <div class="quote-box">
+                <p>"I can't say enough good things about Iuri. He is incredibly talented, easy to work with and always willing to lend a hand."</p>
+                <span class="reference-author">- Esmeralda Kassova Chikoti</span>
+            </div>
+            <div class="quote-box">
+                <p>"It is with the highest level of enthusiasm that I recommend Mr. Iuri Silva. His exceptional skills, tireless work ethic, and innovative approach consistently exceeded our expectations."</p>
+                <span class="reference-author">- Jesualdo Braga</span>
+            </div>
+            <div class="quote-box">
+                <p>"Having Iuri by your side is really a plus: always on top of anything that might be helpful in solving a problem, always ready with an answer to your question."</p>
+                <span class="reference-author">- Luca Valente</span>
+            </div>
+            <div class="quote-box">
+                <p>"Iuri is an exceptional manager and trainer who combines deep technical expertise with outstanding leadership skills."</p>
+                <span class="reference-author">- Valeria Mazza</span>
+            </div>
+            <a href="https://www.linkedin.com/in/itsiurisilva/details/recommendations" class="linkedin-button" target="_blank">View Full LinkedIn Recommendations</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>Contact: iurisilvaparticular@gmail.com | +351 937330080</p>
+    </footer>
+</body>
+</html>
