@@ -159,6 +159,11 @@
     h1, h2 {
       color: var(--accent-color);
     }
+    /* Override hero text colors to white */
+    .hero h1,
+    .hero h2 {
+      color: #fff;
+    }
     h3 {
       font-size: 1.1rem;
       color: #333;
@@ -381,6 +386,49 @@
     #back-to-top:hover {
       background: #333;
     }
+    
+    /* Snake Game Modal Styles */
+    #snake-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+    }
+    #snake-modal-content {
+      position: relative;
+      margin: 5% auto;
+      padding: 1rem;
+      background: #fff;
+      width: 420px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    #snake-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* Custom styling for Snake button (Easter Egg) */
+    #snake-button {
+      background: red;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #snake-button:hover {
+      background: darkred;
+    }
   </style>
 </head>
 <body>
@@ -534,7 +582,7 @@
       <div id="popup-overlay"></div>
     </section>
     
-    <!-- Projects Section (Original Layout with Additional Project) -->
+    <!-- Projects Section (with Additional Projects) -->
     <section id="projects" class="fade-in">
       <h2>Projects</h2>
       <div class="project">
@@ -566,6 +614,19 @@
           <a href="https://github.com/itsiurisilva/OpenAi-Companion" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" /> GitHub Repository
           </a>
+        </div>
+      </div>
+      <div class="project">
+        <h3>Portfolio</h3>
+        <p>
+          This project showcases my personal portfolio website. Explore the repository and, as an Easter Egg, try out a mini Snake game!
+        </p>
+        <div class="project-resources">
+          <a href="https://github.com/itsiurisilva/itsiurisilva.cv" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" /> GitHub Repository
+          </a>
+          <!-- Updated button text and styling -->
+          <button id="snake-button" class="btn">Don't Click Here</button>
         </div>
       </div>
     </section>
@@ -636,6 +697,14 @@
   
   <!-- Back-to-top Button -->
   <button id="back-to-top" aria-label="Scroll back to top">↑</button>
+  
+  <!-- Snake Game Modal (Easter Egg) -->
+  <div id="snake-modal">
+    <div id="snake-modal-content">
+      <span id="snake-modal-close">&times;</span>
+      <canvas id="snake-canvas" width="400" height="400"></canvas>
+    </div>
+  </div>
   
   <script>
     // Popup functionality for certifications
@@ -762,6 +831,115 @@
         // Scroll to top of the page so the header is fully visible
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 500);
+    });
+    
+    // Snake game functionality
+    const snakeButton = document.getElementById('snake-button');
+    const snakeModal = document.getElementById('snake-modal');
+    const snakeModalClose = document.getElementById('snake-modal-close');
+    const canvas = document.getElementById('snake-canvas');
+    const ctx = canvas.getContext('2d');
+    let snake = [{x: 10, y:10}];
+    let snakeDirection = 'RIGHT';
+    let food = {x: 15, y: 15};
+    const gridSize = 20;
+    const tileCount = canvas.width / gridSize;
+    let snakeInterval;
+    
+    function gameLoop() {
+      updateSnake();
+      drawSnake();
+    }
+    function updateSnake() {
+      let head = {...snake[0]};
+      if(snakeDirection === 'RIGHT') head.x++;
+      else if(snakeDirection === 'LEFT') head.x--;
+      else if(snakeDirection === 'UP') head.y--;
+      else if(snakeDirection === 'DOWN') head.y++;
+      
+      // Wrap around the grid
+      if(head.x < 0) head.x = tileCount - 1;
+      if(head.x >= tileCount) head.x = 0;
+      if(head.y < 0) head.y = tileCount - 1;
+      if(head.y >= tileCount) head.y = 0;
+      
+      // Check self-collision
+      for(let cell of snake) {
+        if(cell.x === head.x && cell.y === head.y) {
+          resetSnakeGame();
+          return;
+        }
+      }
+      
+      snake.unshift(head);
+      if(head.x === food.x && head.y === food.y) {
+        placeFood();
+      } else {
+        snake.pop();
+      }
+    }
+    function drawSnake() {
+      // Clear canvas
+      ctx.fillStyle = "#000";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw snake
+      ctx.fillStyle = "#0f0";
+      for(let cell of snake) {
+        ctx.fillRect(cell.x * gridSize, cell.y * gridSize, gridSize-2, gridSize-2);
+      }
+      
+      // Draw food
+      ctx.fillStyle = "#f00";
+      ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize-2, gridSize-2);
+    }
+    function placeFood() {
+      food = {
+        x: Math.floor(Math.random() * tileCount),
+        y: Math.floor(Math.random() * tileCount)
+      };
+    }
+    function resetSnakeGame() {
+      snake = [{x: 10, y:10}];
+      snakeDirection = 'RIGHT';
+      placeFood();
+    }
+    
+    // Prevent arrow keys from scrolling the page when snake modal is open
+    document.addEventListener('keydown', function(e) {
+      if (snakeModal.style.display === 'block' && ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+        e.preventDefault();
+      }
+      if(e.key === "ArrowRight" && snakeDirection !== "LEFT") snakeDirection = "RIGHT";
+      else if(e.key === "ArrowLeft" && snakeDirection !== "RIGHT") snakeDirection = "LEFT";
+      else if(e.key === "ArrowUp" && snakeDirection !== "DOWN") snakeDirection = "UP";
+      else if(e.key === "ArrowDown" && snakeDirection !== "UP") snakeDirection = "DOWN";
+    });
+    
+    function startSnakeGame() {
+      resetSnakeGame();
+      snakeInterval = setInterval(gameLoop, 100);
+    }
+    function stopSnakeGame() {
+      clearInterval(snakeInterval);
+    }
+    
+    // Open Snake game modal on button click
+    snakeButton.addEventListener('click', function() {
+      snakeModal.style.display = 'block';
+      startSnakeGame();
+    });
+    // Close Snake game modal
+    snakeModalClose.addEventListener('click', function() {
+      snakeModal.style.display = 'none';
+      stopSnakeGame();
+    });
+    // Close modal if user clicks outside modal content
+    window.addEventListener('click', function(e) {
+      if(e.target === snakeModal) {
+        snakeModal.style.display = 'none';
+        stopSnakeGame();
+      }
     });
   </script>
 </body>
