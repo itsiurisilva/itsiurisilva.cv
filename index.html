@@ -415,8 +415,8 @@
       cursor: pointer;
     }
     
-    /* Custom styling for Snake button (Easter Egg) */
-    #snake-button {
+    /* "Don't Click Here" Button for Space Invaders Easter Egg */
+    #dont-click-button {
       background: red;
       color: #fff;
       border: none;
@@ -425,9 +425,41 @@
       font-size: 1.1rem;
       cursor: pointer;
       transition: background 0.3s ease;
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      z-index: 3000;
     }
-    #snake-button:hover {
+    #dont-click-button:hover {
       background: darkred;
+    }
+    
+    /* Invader styling */
+    .invader {
+      position: fixed;
+      font-size: 2rem;
+      z-index: 3000;
+      pointer-events: none;
+      transition: left 2s linear, top 2s linear;
+    }
+    
+    /* Projectile styling (for invader projectiles) */
+    .projectile {
+      position: fixed;
+      font-size: 1rem;
+      z-index: 3000;
+      pointer-events: none;
+    }
+    
+    /* Destruction animation */
+    .destroyed {
+      animation: destroy 1s forwards;
+    }
+    @keyframes destroy {
+      to {
+        opacity: 0;
+        transform: scale(0);
+      }
     }
   </style>
 </head>
@@ -625,8 +657,7 @@
           <a href="https://github.com/itsiurisilva/itsiurisilva.cv" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" /> GitHub Repository
           </a>
-          <!-- Updated button text and styling -->
-          <button id="snake-button" class="btn">Don't Click Here</button>
+          <button id="snake-button" class="btn">Play Snake</button>
         </div>
       </div>
     </section>
@@ -705,6 +736,9 @@
       <canvas id="snake-canvas" width="400" height="400"></canvas>
     </div>
   </div>
+  
+  <!-- "Don't Click Here" Button for Space Invaders Easter Egg -->
+  <button id="dont-click-button">Don't Click Here</button>
   
   <script>
     // Popup functionality for certifications
@@ -941,6 +975,101 @@
         stopSnakeGame();
       }
     });
+    
+    // Space Invaders Easter Egg: "Don't Click Here" button
+    document.getElementById('dont-click-button').addEventListener('click', startSpaceInvaders);
+    
+    function startSpaceInvaders() {
+      // Hide the "Don't Click Here" button
+      document.getElementById('dont-click-button').style.display = 'none';
+      // Spawn 7 invaders
+      let invaders = [];
+      for (let i = 0; i < 7; i++) {
+        invaders.push(spawnInvader());
+      }
+      
+      // Every 1.5 seconds, each invader has a chance to shoot at a random target from .container
+      let shootingInterval = setInterval(() => {
+        let targets = Array.from(document.querySelectorAll('.container *')).filter(el => el.offsetParent !== null);
+        if (targets.length === 0) {
+          // If no targets remain, clear interval and remove invaders
+          clearInterval(shootingInterval);
+          invaders.forEach(inv => {
+            clearInterval(inv.movementInterval);
+            inv.element.remove();
+          });
+          return;
+        }
+        invaders.forEach(inv => {
+          if (Math.random() < 0.5) { // 50% chance to shoot
+            let target = targets[Math.floor(Math.random() * targets.length)];
+            shootInvaderProjectile(inv.element, target);
+          }
+        });
+      }, 1500);
+    }
+    
+    function spawnInvader() {
+      let inv = document.createElement('div');
+      inv.className = 'invader';
+      inv.innerText = '👾';
+      inv.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+      inv.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+      document.body.appendChild(inv);
+      let movementInterval = setInterval(() => {
+        inv.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+        inv.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+      }, 2000);
+      return { element: inv, movementInterval: movementInterval };
+    }
+    
+    function shootInvaderProjectile(invader, target) {
+      let projectile = document.createElement('div');
+      projectile.className = 'projectile';
+      let words = ["Boom!", "Zap!", "Bang!"];
+      projectile.innerText = words[Math.floor(Math.random() * words.length)];
+      // Start at invader's center:
+      let invRect = invader.getBoundingClientRect();
+      let startX = invRect.left + invRect.width / 2;
+      let startY = invRect.top + invRect.height / 2;
+      projectile.style.left = startX + 'px';
+      projectile.style.top = startY + 'px';
+      document.body.appendChild(projectile);
+      
+      // Target center:
+      let targetRect = target.getBoundingClientRect();
+      let targetX = targetRect.left + targetRect.width / 2;
+      let targetY = targetRect.top + targetRect.height / 2;
+      
+      let dx = targetX - startX;
+      let dy = targetY - startY;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+      let speed = 300; // pixels per second
+      let duration = distance / speed * 1000;
+      let startTime = null;
+      
+      function animate(timestamp) {
+        if (!startTime) startTime = timestamp;
+        let elapsed = timestamp - startTime;
+        let progress = elapsed / duration;
+        if (progress > 1) progress = 1;
+        let currentX = startX + dx * progress;
+        let currentY = startY + dy * progress;
+        projectile.style.left = currentX + 'px';
+        projectile.style.top = currentY + 'px';
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          // On hit: add destruction animation to target then remove it
+          target.classList.add('destroyed');
+          setTimeout(() => {
+            target.remove();
+          }, 1000);
+          projectile.remove();
+        }
+      }
+      requestAnimationFrame(animate);
+    }
   </script>
 </body>
 </html>
