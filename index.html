@@ -415,9 +415,10 @@
       cursor: pointer;
     }
     
-    /* "Don't Click Here" Button for Space Invaders Easter Egg */
+    /* Updated "Don't Click Here" Button Styles */
     #dont-click-button {
-      background: red;
+      display: inline-block;
+      background: var(--accent-color);
       color: #fff;
       border: none;
       padding: 0.75rem 1.5rem;
@@ -425,15 +426,13 @@
       font-size: 1.1rem;
       cursor: pointer;
       transition: background 0.3s ease;
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      z-index: 3000;
+      margin: 1rem 0;
     }
     #dont-click-button:hover {
       background: darkred;
     }
     
+    /* --- Added CSS for Space Invaders --- */
     /* Invader styling */
     .invader {
       position: fixed;
@@ -461,6 +460,7 @@
         transform: scale(0);
       }
     }
+    /* --- End of Invader CSS --- */
   </style>
 </head>
 <body>
@@ -596,20 +596,38 @@
       </ul>
     </section>
     
-    <!-- Certifications Section -->
+    <!-- Certifications Section (Updated with Dropdown) -->
     <section id="certifications" class="fade-in">
       <h2>Certifications</h2>
       <ul class="certifications">
-        <li><a id="google-cert" href="javascript:void(0);">Google Data Analyst Certificate (8/8 Done)</a></li>
-        <li><a href="https://skillshop.exceedlms.com/student/award/nfbi6joa6PGtVexrgHv59c4U" target="_blank">Google Chromebooks for Educators</a></li>
-        <li><a href="https://skillshop.exceedlms.com/student/award/DVQHrUG2pLpENCxqYo5nKxSo" target="_blank">Generative AI for Educators Certificate</a></li>
-        <li><a href="https://skillshop.exceedlms.com/student/award/zZxqW4RQzKm9S3qWsZejXVGv" target="_blank">Premium Teaching &amp; Learning Features</a></li>
+        <li>
+          <a id="google-cert" href="https://www.coursera.org/account/accomplishments/specialization/1E0WHCJU2RTX" target="_blank">
+            Google Data Analytics Specialization
+          </a>
+          <details>
+            <summary>View Courses</summary>
+            <ul>
+              <li><a href="https://www.coursera.org/account/accomplishments/records/3QBSK1ZKP5KB" target="_blank">Foundations: Data, Data, Everywhere</a></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/records/XP5UH7KPUT1V" target="_blank">Ask Questions to Make Data-Driven Decisions</a></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/records/MYOKMS75XO9F" target="_blank">Prepare Data for Exploration</a></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/records/XKY3EM6SL582" target="_blank">Process Data from Dirty to Clean</a></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/records/894E65VZUQU9" target="_blank">Analyze Data to Answer Questions</a></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/records/KYYB7MJLXSBR" target="_blank">Share Data Through the Art of Visualization</a></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/records/OWSKG4E83WLE" target="_blank">Data Analysis with R Programming</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>Introduction to Programming Using Python</li>
+        <li>Google: Inteligência Artificial e Produtividade</li>
+        <li>Inovação Pedagógica com IA Generativa</li>
+        <li><a href="https://skillshop.exceedlms.com/student/award/nfbi6joa6PGtVexrgHv59c4U" target="_blank">Google, Chromebooks for Educators</a></li>
+        <li><a href="https://skillshop.exceedlms.com/student/award/DVQHrUG2pLpENCxqYo5nKxSo" target="_blank">Google, Generative AI for Educators</a></li>
+        <li><a href="https://skillshop.exceedlms.com/student/award/zZxqW4RQzKm9S3qWsZejXVGv" target="_blank">Google, Premium Teaching &amp; Learning Features</a></li>
       </ul>
       <div id="popup">
         <span id="popup-close">&times;</span>
-        <h3>Google Data Analyst Certificate Details</h3>
-        <a href="https://www.coursera.org/account/accomplishments/verify/XP5UH7KPUT1V" target="_blank">Ask Questions to Make Data-Driven Decisions</a>
-        <a href="https://www.coursera.org/account/accomplishments/verify/3QBSK1ZKP5KB" target="_blank">Foundations: Data, Data, Everywhere</a>
+        <h3>Google Data Analytics Specialization Details</h3>
+        <p>Check out the specialization details on Coursera by clicking the link above.</p>
       </div>
       <div id="popup-overlay"></div>
     </section>
@@ -657,7 +675,7 @@
           <a href="https://github.com/itsiurisilva/itsiurisilva.cv" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" /> GitHub Repository
           </a>
-          <button id="snake-button" class="btn">Play Snake</button>
+          <!-- Removed the Play Snake button from here -->
         </div>
       </div>
     </section>
@@ -720,6 +738,16 @@
         <button type="submit" class="btn">Send Message</button>
       </form>
     </section>
+    
+    <!-- New Games Section -->
+    <section id="games" class="fade-in">
+      <div class="container">
+        <h2>Extra</h2>
+        <button id="snake-button" class="btn">Play Snake</button>
+        <button id="dont-click-button" class="btn">Don't Click Here</button>
+      </div>
+    </section>
+  
   </div>
   
   <footer>
@@ -737,12 +765,11 @@
     </div>
   </div>
   
-  <!-- "Don't Click Here" Button for Space Invaders Easter Egg -->
-  <button id="dont-click-button">Don't Click Here</button>
-  
   <script>
     // Popup functionality for certifications
-    document.getElementById('google-cert').addEventListener('click', function() {
+    document.getElementById('google-cert').addEventListener('click', function(e) {
+      // Uncomment the line below if you prefer to show a popup instead of opening the link directly
+      // e.preventDefault();
       document.getElementById('popup').style.display = 'block';
       document.getElementById('popup-overlay').style.display = 'block';
     });
