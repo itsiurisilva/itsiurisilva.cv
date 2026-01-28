@@ -3,1116 +3,1036 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Iuri Silva's professional portfolio as a Data Analyst, Trainer, and Technology Enthusiast." />
-  <meta name="keywords" content="Data Analyst, Trainer, Technology, Portfolio, Iuri Silva" />
+  <meta name="description" content="Iuri Silva - Data Analyst & Engineer Portfolio. Expert in Python, BigQuery, ETL, Automation, and IoT." />
+  <meta name="keywords" content="Data Analyst, Data Engineer, Python, BigQuery, ETL, Automation, Portfolio, Iuri Silva, Konecta, YTVLC" />
   <meta name="author" content="Iuri Silva" />
-  <title>Iuri Silva - Portfolio</title>
+  <title>Iuri Silva | Data Analyst & Engineer</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
-    /* Smooth Scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    /* CSS Variables for Light/Dark Mode */
+    /* --- CSS Variables & Reset --- */
     :root {
-      --bg-color: #f5f5f5;
-      --text-color: #333;
-      --accent-color: #4285F4;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-main: #2d3436;
+      --text-muted: #636e72;
+      --accent-color: #0984e3; /* Electric Blue */
+      --accent-hover: #00cec9;
+      --shadow: 0 4px 15px rgba(0,0,0,0.05);
+      --code-font: 'Courier New', Courier, monospace;
     }
+
     .dark-mode {
-      --bg-color: #333;
-      --text-color: #f5f5f5;
+      --bg-color: #1e1e1e;
+      --card-bg: #2d2d2d;
+      --text-main: #dfe6e9;
+      --text-muted: #b2bec3;
+      --accent-color: #74b9ff;
+      --shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
+
+    * { box-sizing: border-box; }
     
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.6;
       margin: 0;
-      padding: 0;
       background-color: var(--bg-color);
-      color: var(--text-color);
-      cursor: url('https://cdn.custom-cursor.com/db/cursor/32/Uwu_and_OwOCursor.png'), auto;
+      color: var(--text-main);
+      transition: background 0.3s ease, color 0.3s ease;
+      cursor: default; 
     }
-    a:hover, button:hover {
-      cursor: url('https://cdn.custom-cursor.com/db/pointer/32/Uwu_and_OwOPointer.png'), pointer;
+
+    /* --- Typography --- */
+    h1, h2, h3 { color: var(--text-main); font-weight: 700; margin-top: 0; }
+    h2 { 
+      border-bottom: 3px solid var(--accent-color); 
+      display: inline-block; 
+      padding-bottom: 5px; 
+      margin-bottom: 30px;
     }
-    
-    /* Initially hide header and nav */
-    #header, #nav {
-      display: none;
+    a { color: var(--accent-color); text-decoration: none; transition: 0.3s; }
+    a:hover { color: var(--accent-hover); }
+
+    /* --- Layout Components --- */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
     }
-    
-    /* Header */
-    header {
-      position: relative;
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.5rem;
       background: var(--accent-color);
-      color: #fff;
+      color: #fff !important;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      gap: 10px;
+      text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+
+    .btn-outline {
+        background: transparent;
+        border: 2px solid var(--accent-color);
+        color: var(--accent-color) !important;
+    }
+    .btn-outline:hover {
+        background: var(--accent-color);
+        color: #fff !important;
+    }
+
+    /* --- Header & Nav --- */
+    header {
+      background: var(--card-bg);
       padding: 1rem 0;
       text-align: center;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: none; 
     }
-    header h1 {
-      margin: 0;
-      color: #fff;
-    }
-    /* Theme Toggle Button with Minimalist Icon */
+    
+    .social-links a { font-size: 1.5rem; margin: 0 10px; color: var(--text-main); }
+    .social-links a:hover { color: var(--accent-color); transform: scale(1.2); display: inline-block; }
+
     #theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
       background: none;
       border: none;
       font-size: 1.5rem;
       cursor: pointer;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      color: #fff;
+      color: var(--text-main);
     }
-    #theme-icon {
-      pointer-events: none;
-    }
-    .linkedin-icon img,
-    .github-icon img {
-      width: 20px;
-      height: 20px;
-      margin-left: 5px;
-      vertical-align: middle;
-      transition: transform 0.3s ease;
-    }
-    .linkedin-icon img:hover,
-    .github-icon img:hover {
-      transform: scale(1.3);
-    }
-    
-    /* Hero Section */
-    .hero {
-      position: relative;
-      height: 100vh;
-      background: url('https://wallpaperaccess.com/full/1614776.jpg') no-repeat center center/cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-    }
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-    /* Button Styles */
-    .btn {
-      margin-top: 1rem;
-      padding: 0.75rem 1.5rem;
-      background: var(--accent-color);
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .btn:hover {
-      background: #333;
-    }
-    /* Pulse animation for hero button */
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    .hero .btn {
-      animation: pulse 2s infinite;
-    }
-    
-    /* Navigation */
+
     nav {
-      background: #333;
-      color: #fff;
-      padding: 0.5rem 1rem;
-      display: flex;
-      justify-content: space-around;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-    nav a.active {
-      border-bottom: 2px solid #fff;
-    }
-    
-    /* Container */
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      overflow: hidden;
-      padding: 2rem;
-    }
-    
-    h1, h2 {
-      color: var(--accent-color);
-    }
-    /* Override hero text colors to white */
-    .hero h1,
-    .hero h2 {
-      color: #fff;
-    }
-    h3 {
-      font-size: 1.1rem;
-      color: #333;
-    }
-    section {
-      margin-bottom: 2rem;
-    }
-    
-    footer {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1rem 0;
-      margin-top: 2rem;
-    }
-    
-    /* Skills */
-    .skills {
-      display: flex;
+      background: var(--card-bg);
+      border-top: 1px solid rgba(0,0,0,0.05);
+      padding: 10px 0;
+      display: none; 
+      justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 1rem;
+      gap: 15px;
     }
-    .skills span {
-      display: inline-block;
-      background: var(--accent-color);
-      color: #fff;
-      padding: 0.5rem 1rem;
-      margin: 0.5rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: transform 0.3s;
-    }
-    .skills span:hover {
-      transform: scale(1.1);
-    }
-    
-    /* Language Proficiency */
-    .language-proficiency {
-      margin-top: 1rem;
-    }
-    .language-bar {
-      background: #ddd;
-      border-radius: 5px;
-      overflow: hidden;
-      margin: 0.5rem 0;
-    }
-    .language-bar span {
-      display: block;
-      height: 20px;
-      line-height: 20px;
-      text-align: center;
-      color: #fff;
-    }
-    
-    /* Certifications */
-    .certifications li {
-      background: #eee;
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-      border-left: 4px solid var(--accent-color);
+    nav a { 
+      color: var(--text-muted); 
+      font-weight: 500; 
+      font-size: 0.95rem; 
       position: relative;
+      padding: 5px;
     }
-    .certifications li a {
-      color: var(--accent-color);
-      text-decoration: none;
-    }
-    .certifications li a:hover {
-      text-decoration: underline;
-    }
-    
-    /* Popup Styles */
-    #popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      padding: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      border-radius: 5px;
-    }
-    #popup a {
-      display: block;
-      margin: 0.5rem 0;
-      color: var(--accent-color);
-      text-decoration: none;
-    }
-    #popup a:hover {
-      text-decoration: underline;
-    }
-    #popup-close {
+    nav a.active, nav a:hover { color: var(--accent-color); }
+    nav a::after {
+      content: '';
       position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-      color: #333;
-    }
-    #popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
+      width: 0;
+      height: 2px;
+      bottom: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 999;
+      background-color: var(--accent-color);
+      transition: width 0.3s;
     }
-    
-    /* Quote Box Styles for References */
-    .quote-box {
-      border-left: 4px solid var(--accent-color);
-      background: #f9f9f9;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-    .quote-box .reference-author {
-      font-weight: bold;
-      font-size: 0.9rem;
-      color: #555;
-      margin-top: 0.5rem;
-    }
-    
-    /* Fade-in Animation */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Projects Section (Original Layout) */
-    .project {
-      margin: 1rem 0;
-      padding: 1rem;
-      background: #f9f9f9;
-      border-left: 4px solid var(--accent-color);
-      border-radius: 5px;
-    }
-    .project h3 {
-      margin-bottom: 0.5rem;
-    }
-    .project p {
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-    }
-    .project-resources {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .project-resources a {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      background: #eee;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      color: #333;
-      font-size: 0.9rem;
-      transition: background 0.3s ease;
-    }
-    .project-resources a:hover {
-      background: var(--accent-color);
+    nav a:hover::after { width: 100%; }
+
+    /* --- Hero Section --- */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg, #1e1e1e 0%, #2d3436 100%);
       color: #fff;
-    }
-    .project-resources img {
-      width: 20px;
-      height: 20px;
-      margin-right: 0.5rem;
-    }
-    
-    /* Contact Form */
-    #contact-form {
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
     }
-    #contact-form label {
-      margin: 0.5rem 0 0.2rem;
-    }
-    #contact-form input,
-    #contact-form textarea {
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-bottom: 1rem;
-    }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 0.5rem; color: #fff; }
+    .hero h2 { border: none; color: var(--accent-color); font-family: var(--code-font); }
     
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
-      }
-      .skills span {
-        flex: 1 1 calc(50% - 10px);
-      }
+    .particles {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        overflow: hidden; z-index: 0; pointer-events: none;
     }
+
+    /* --- Sections General --- */
+    section { margin-bottom: 4rem; padding-top: 80px; margin-top: -80px; }
     
-    /* Back-to-top Button Styles */
-    #back-to-top {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: var(--accent-color);
-      color: #fff;
-      border: none;
-      padding: 0.5rem 0.75rem;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 1000;
-      transition: opacity 0.3s ease;
+    .fade-in { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* --- Timeline / Journey Styles --- */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px 0;
     }
-    #back-to-top:hover {
-      background: #333;
-    }
-    
-    /* Snake Game Modal Styles */
-    #snake-modal {
-      display: none;
-      position: fixed;
+    .timeline::before {
+      content: '';
+      position: absolute;
       top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 2000;
+      bottom: 0;
+      left: 20px;
+      width: 4px;
+      background: #dfe6e9;
+      border-radius: 2px;
+    }
+    .dark-mode .timeline::before { background: #444; }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+      padding-left: 60px;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: 12px;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: var(--bg-color);
+      border: 4px solid var(--accent-color);
+      border-radius: 50%;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-content {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, border-left-color 0.3s;
+      border-left: 4px solid transparent;
+    }
+
+    .timeline-item:hover .timeline-marker {
+      background: var(--accent-color);
+      transform: scale(1.2);
+    }
+    .timeline-item:hover .timeline-content {
+      transform: translateX(5px);
+      border-left-color: var(--accent-color);
+    }
+
+    .timeline-year {
+      display: inline-block;
+      background: rgba(9, 132, 227, 0.1);
+      color: var(--accent-color);
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-family: var(--code-font);
+    }
+
+    /* --- Skills Cards --- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .skill-category {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--accent-color);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .skill-tag {
+      background: rgba(9, 132, 227, 0.1);
+      color: var(--accent-color);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* --- Experience Timeline Style --- */
+    .experience-item {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem; 
+      position: relative;
+      border-left: 5px solid var(--text-muted); 
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .experience-item:hover { 
+        border-left-color: var(--accent-color); 
+        transform: translateX(5px);
+    }
+    .job-header { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: flex-start;
+        flex-wrap: wrap; 
+        margin-bottom: 1.2rem; 
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        padding-bottom: 10px;
+    }
+    .job-title { font-size: 1.3rem; font-weight: 700; color: var(--text-main); margin-bottom: 5px;}
+    .job-company { color: var(--accent-color); font-weight: 600; font-size: 1.1rem;}
+    .job-date { 
+        font-family: var(--code-font); 
+        color: var(--text-muted); 
+        font-size: 0.95rem; 
+        background: rgba(0,0,0,0.05);
+        padding: 4px 10px;
+        border-radius: 4px;
+        white-space: nowrap;
+    }
+    .job-details { padding-left: 1rem; margin-top: 1rem; }
+    .job-details li { margin-bottom: 0.8rem; color: var(--text-muted); position: relative; }
+    .job-details li::marker { color: var(--accent-color); }
+
+    /* --- Projects Grid --- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      border-top: 3px solid transparent;
+    }
+    .project-card:hover { 
+        transform: translateY(-5px); 
+        border-top-color: var(--accent-color);
+    }
+    .project-content { padding: 1.5rem; flex-grow: 1; }
+    .project-tech { 
+        font-size: 0.75rem; 
+        color: var(--accent-color); 
+        margin-bottom: 1rem; 
+        font-family: var(--code-font); 
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+    .project-links { 
+      padding: 1rem 1.5rem; 
+      background: rgba(0,0,0,0.02); 
+      border-top: 1px solid rgba(0,0,0,0.05);
+      display: flex; gap: 15px;
+    }
+
+    /* --- Certifications List --- */
+    .cert-list { list-style: none; padding: 0; }
+    .cert-item {
+        background: var(--card-bg);
+        padding: 1rem 1.5rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        transition: transform 0.2s;
+    }
+    .cert-item:hover { transform: translateX(5px); }
+    .cert-title { font-weight: 600; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+
+    /* --- Contact Section --- */
+    .contact-box {
+      background: var(--card-bg);
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      max-width: 800px;
+      margin: auto;
+    }
+    .contact-actions {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      background: var(--card-bg);
+      margin-top: 4rem;
+    }
+
+    /* --- Game Styles --- */
+    #snake-modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85); z-index: 2000; backdrop-filter: blur(5px);
     }
     #snake-modal-content {
-      position: relative;
-      margin: 5% auto;
-      padding: 1rem;
-      background: #fff;
-      width: 420px;
-      border-radius: 5px;
-      text-align: center;
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: #2d3436; padding: 20px; border-radius: 10px; border: 2px solid var(--accent-color);
     }
-    #snake-modal-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
+    canvas { background: #000; display: block; }
     
-    /* Updated "Don't Click Here" Button Styles */
-    #dont-click-button {
-      display: inline-block;
-      background: var(--accent-color);
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 5px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      margin: 1rem 0;
+    .invader { position: fixed; font-size: 2rem; z-index: 3000; pointer-events: none; transition: all 2s linear; }
+    .projectile { position: fixed; font-size: 1.2rem; color: red; z-index: 3000; font-weight: bold; pointer-events: none; }
+    .destroyed { transition: 0.5s; opacity: 0; transform: scale(0) rotate(180deg); filter: grayscale(100%); }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      nav { flex-direction: column; align-items: center; }
+      .job-header { flex-direction: column; align-items: flex-start; gap: 5px; }
+      .contact-actions { flex-direction: column; }
     }
-    #dont-click-button:hover {
-      background: darkred;
-    }
-    
-    /* --- Added CSS for Space Invaders --- */
-    /* Invader styling */
-    .invader {
-      position: fixed;
-      font-size: 2rem;
-      z-index: 3000;
-      pointer-events: none;
-      transition: left 2s linear, top 2s linear;
-    }
-    
-    /* Projectile styling (for invader projectiles) */
-    .projectile {
-      position: fixed;
-      font-size: 1rem;
-      z-index: 3000;
-      pointer-events: none;
-    }
-    
-    /* Destruction animation */
-    .destroyed {
-      animation: destroy 1s forwards;
-    }
-    @keyframes destroy {
-      to {
-        opacity: 0;
-        transform: scale(0);
-      }
-    }
-    /* --- End of Invader CSS --- */
   </style>
 </head>
 <body>
-  <!-- Header and Navigation (Initially Hidden) -->
-  <header id="header">
-    <h1>Iuri Silva</h1>
-    <p>Data Analyst | Trainer | Technology Enthusiast</p>
-    <!-- Theme toggle button with dynamic icon -->
-    <button id="theme-toggle" aria-label="Toggle Light/Dark Mode">
-      <span id="theme-icon">☾</span>
-    </button>
-    <p>
-      <a href="https://www.linkedin.com/in/itsiurisilva/" target="_blank" class="linkedin-icon" title="Visit my LinkedIn Profile">
-        <img src="https://cdn-icons-png.flaticon.com/512/3536/3536569.png" alt="LinkedIn Icon" />
-      </a>
-      <a href="https://github.com/itsiurisilva" target="_blank" class="github-icon" title="Visit my GitHub Profile">
-        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" />
-      </a>
-    </p>
-  </header>
-  
-  <nav id="nav">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#education">Education</a>
-    <a href="#experience">Experience</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#projects">Projects</a>
-    <a href="#languages">Languages</a>
-    <a href="#references">References</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  
-  <!-- Hero Section (Full Page) -->
-  <section id="hero" class="hero fade-in">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Hi, I'm Iuri Silva</h1>
-      <h2><span id="dynamic-text"></span></h2>
-      <!-- Discover More button: Clicking this hides the hero and reveals header/nav, then scrolls to the top -->
-      <a href="#" id="discover-more" class="btn">Discover More</a>
+
+  <section id="hero" class="hero">
+    <div class="particles" id="particles-js"></div> 
+    <div class="hero-content fade-in visible">
+      <h1>Iuri Silva</h1>
+      <h2><span id="dynamic-text"></span><span class="cursor">|</span></h2>
+      <button id="discover-more" class="btn" style="margin-top: 2rem;">Initialize Portfolio_v8.0</button>
     </div>
   </section>
-  
+
+  <header id="header">
+    <div class="container" style="padding: 0 2rem; display: flex; justify-content: space-between; align-items: center;">
+      <h3 style="margin:0;">IS <span style="color:var(--accent-color); font-size:0.8rem;">// DATA_ENGINEER</span></h3>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/itsiurisilva/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/itsiurisilva" target="_blank"><i class="fab fa-github"></i></a>
+        <button id="theme-toggle"><i class="fas fa-moon" id="theme-icon"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <nav id="nav">
+    <a href="#about">About</a>
+    <a href="#journey">Journey</a>
+    <a href="#skills">Stack</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certs</a>
+    <a href="#contact">Contact</a>
+    <a href="#games" style="color: var(--accent-color);"> <i class="fas fa-gamepad"></i> Extra</a>
+  </nav>
+
   <div class="container">
-    <!-- About Section -->
+    
     <section id="about" class="fade-in">
       <h2>About Me</h2>
+      <p style="font-size: 1.1rem; max-width: 800px;">
+        I am a <strong>Data Analyst & Developer</strong> focused on building robust data infrastructure. Im specialized in migrating legacy systems to scalable solutions, automating ETL pipelines with Python, and solving complex problems.
+      </p>
       <p>
-        Dedicated problem solver and reliable Point of Contact in my previous roles, emphasizing a balance between approachability and meticulous information handling. Committed to fostering positive communication and contributing to a stronger work environment.
+        Currently providing data solutions at <strong>Konecta</strong>.
       </p>
     </section>
-    
-    <!-- Skills Section -->
+
+    <section id="journey" class="fade-in">
+      <h2>My Journey</h2>
+      <div class="timeline">
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">Age 8</span>
+            <h3>The Spark: Flash & ActionScript</h3>
+            <p>
+              It all started with a school field trip to <strong>ABB in the Netherlands</strong> 
+              I fell in love with the logic behind the screen, experimenting with Flash to make things move the way I intent.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">Age 12</span>
+            <h3>Hardware DIY</h3>
+            <p>
+              My Mom enrolled me in a programming course for kids where I found my initial passion for hardware. 
+              I started connecting to an <strong>MSP430 microcontrollers</strong> from old Texas Instruments calculators to program my own mini-games.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">Age 16</span>
+            <h3>The Foundation: ETLA</h3>
+            <p>
+              Joined <strong>Escola Tecnológica do Litoral Alentejano</strong>. My interest scaled from microcontrollers to industrial automation, mastering <strong>Arduino, Raspberry Pi, and PLCs</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">Age 18+</span>
+            <h3>The Blog Era</h3>
+            <p>
+              Started getting involved in the developers community (GitHub, Stack Overflow, Reddit, Hashnode, etc...). 
+              Driven by curiosity, I dedicated myself to learning new languages to solving community problems, mostly things I had no clue.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">Recent Years</span>
+            <h3>The Builder</h3>
+            <p>
+               Focused on developing tools that solved problems, Is it programmable? I'm the guy. On Work, the same but more focused on something that collected the necessary data—whether through browser extensions, Python scripts, or IoT devices.
+            </p>
+            <blockquote style="border-left: 3px solid var(--accent-color); padding-left: 10px; margin-top: 10px; font-style: italic; color: var(--text-muted);">
+              "I don't have anything I don't know, only things I haven't investigated yet."
+            </blockquote>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <section id="skills" class="fade-in">
-      <h2>Skills</h2>
-      <h3>Personal</h3>
-      <div class="skills">
-        <span>Critical Thinking</span>
-        <span>Problem Solving</span>
-        <span>Team Work</span>
-        <span>Creative</span>
-        <span>Curious</span>
-      </div>
-      <h3>Programming Languages</h3>
-      <div class="skills">
-        <span>SQL</span>
-        <span>R</span>
-        <span>Python</span>
-        <span>Wiring</span>
-        <span>Ladder</span>
-        <span>HTML</span>
-        <span>JavaScript</span>
-        <span>Google Apps Script</span>
-        <span>LabVIEW</span>
-      </div>
-      <h3>Software</h3>
-      <div class="skills">
-        <span>Jira</span>
-        <span>Tableau</span>
-        <span>Slack</span>
-        <span>Salesforce</span>
-        <span>Nova</span>
-        <span>CRM</span>
-        <span>GoContact</span>
-        <span>Confluence</span>
-        <span>Google Looker</span>
-        <span>BigQuery</span>
-        <span>Visual Studio Code</span>
-        <span>Excel / Google Sheets</span>
-        <span>Power BI</span>
-        <span>Arduino IDE</span>
-        <span>Raspberry PI</span>
-        <span>MATLAB</span>
-        <span>TIA Portal</span>
-        <span>Notepad++</span>
-        <span>NI LabVIEW</span>
+      <h2>Technical Stack</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3><i class="fas fa-database"></i> Data & Code</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">BigQuery</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">R Programming</span>
+            <span class="skill-tag">Google Apps Script</span>
+            <span class="skill-tag">DBeaver</span>
+            <span class="skill-tag">Web Scraping</span>
+            <span class="skill-tag">HTML/JS</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-chart-line"></i> Visualization & Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Looker Studio</span>
+            <span class="skill-tag">Excel / Sheets</span>
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Salesforce / CRM</span>
+            <span class="skill-tag">Confluence</span>
+            <span class="skill-tag">Slack</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-microchip"></i> Engineering & IoT</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Arduino IDE</span>
+            <span class="skill-tag">Raspberry Pi</span>
+            <span class="skill-tag">LabVIEW</span>
+            <span class="skill-tag">MATLAB</span>
+            <span class="skill-tag">TIA Portal</span>
+            <span class="skill-tag">Wiring/Ladder</span>
+          </div>
+        </div>
       </div>
     </section>
-    
-    <!-- Education Section -->
-    <section id="education" class="fade-in">
-      <h2>Education</h2>
-      <p><strong>ETLA - Escola Tecnológica do Litoral Alentejano</strong> (2015 - 2018)</p>
-      <ul>
-        <li>Specialization in Electronics, Automation, and Instrumentation</li>
-        <li>Sociocultural, Scientific, and Technical components including Math, Physics, Chemistry, Automation, and Digital Systems</li>
-        <li>Internship (3100 hours over 3 years, grade: 19/20)</li>
-      </ul>
-      <p><strong>Google Certification</strong> (Completed, 2024)</p>
-      <ul>
-        <li>Field of Study: Data Analyst</li>
-        <li>Premium Teaching &amp; Learning Features</li>
-      </ul>
-    </section>
-    
-    <!-- Experience Section -->
+
     <section id="experience" class="fade-in">
-      <h2>Professional Experience</h2>
-      <p><strong>Training Specialist and People Manager</strong> at Konecta for EDP Comercial (2025 - Present)</p>
-      <ul>
-      <li>Developed a comprehensive end-to-end training program for energy services and solar panel sales with interactive resources.</li>
-      <li>Created a Spreadsheet-based bill simulator enabling agents to calculate rates and estimated savings in real time, boosting persuasion during customer outreach.</li>
-      <li>Produced vector animations using AI to enrich visual materials and fill design-team gaps, ensuring consistent branding.</li>
-      <li>Structured a training follow-up template—including platform modules, sales techniques, and supplemental resources—to streamline agents’ learning workflow.</li>
-      <li>Delivered 2–3 training sessions per month, equipping new agent cohorts to convert cold outbound sales leads.</li>
-      <li>Collaborated on the multicultural adaptation of Portuguese content for different regions (Portugal, Brazil, Angola), ensuring clarity and local relevance.</li>
-      <li>Automated the user-provisioning process (≈5 users/person) for Konecta and EDP using Google Apps Script, reducing manual errors and setup time.</li>
-      <li>Implemented a “Track Tolerance” monitoring system for adherence, absences, sick leaves, and compensations to mitigate client complaints.</li>
-      <li>Managed user access permissions and documentation in close collaboration with HR, Operations, Quality and Team Leaders.</li>
-      </ul>
-      <p><strong>Corporate Trainer</strong> at Foundever for Airbnb (2023 - 2025)</p>
-      <ul>
-        <li>Conducted training needs assessments to identify skill gaps and developed targeted sessions.</li>
-        <li>Created resources reducing helpdesk tickets and enhanced global team collaboration.</li>
-        <li>Trained and onboarded employees from Portugal, Spain, France, Italy, Germany, and Brazil.</li>
-      </ul>
-      <p><strong>Team Coordination</strong> at Foundever for Airbnb (2022 - 2023)</p>
-      <ul>
-        <li>Acted as central contact point improving communication and productivity.</li>
-        <li>Collaborated with QA teams for pre-deployment testing.</li>
-        <li>Fostered a collaborative and respectful team culture.</li>
-      </ul>
-      <p><strong>Case Manager</strong> at Foundever for Airbnb (2019 - 2022)</p>
-      <ul>
-        <li>Responded to calls, emails, and posts for travel and accommodation support worldwide.</li>
-        <li>Mediated urgent cases and facilitated resolutions under pressure.</li>
-        <li>Enhanced customer satisfaction by building trust and rapport.</li>
-      </ul>
-    </section>
-    
-    <!-- Certifications Section (Updated with Dropdown) -->
-    <section id="certifications" class="fade-in">
-      <h2>Certifications</h2>
-      <ul class="certifications">
-        <li>
-          <a id="google-cert" href="https://www.coursera.org/account/accomplishments/specialization/1E0WHCJU2RTX" target="_blank">
-            Google Data Analytics Specialization
-          </a>
-          <details>
-            <summary>View Courses</summary>
-            <ul>
-              <li><a href="https://www.coursera.org/account/accomplishments/records/3QBSK1ZKP5KB" target="_blank">Foundations: Data, Data, Everywhere</a></li>
-              <li><a href="https://www.coursera.org/account/accomplishments/records/XP5UH7KPUT1V" target="_blank">Ask Questions to Make Data-Driven Decisions</a></li>
-              <li><a href="https://www.coursera.org/account/accomplishments/records/MYOKMS75XO9F" target="_blank">Prepare Data for Exploration</a></li>
-              <li><a href="https://www.coursera.org/account/accomplishments/records/XKY3EM6SL582" target="_blank">Process Data from Dirty to Clean</a></li>
-              <li><a href="https://www.coursera.org/account/accomplishments/records/894E65VZUQU9" target="_blank">Analyze Data to Answer Questions</a></li>
-              <li><a href="https://www.coursera.org/account/accomplishments/records/KYYB7MJLXSBR" target="_blank">Share Data Through the Art of Visualization</a></li>
-              <li><a href="https://www.coursera.org/account/accomplishments/records/OWSKG4E83WLE" target="_blank">Data Analysis with R Programming</a></li>
-            </ul>
-          </details>
-        </li>
-        <li>Introduction to Programming Using Python</li>
-        <li>Google: Inteligência Artificial e Produtividade</li>
-        <li>Inovação Pedagógica com IA Generativa</li>
-        <li><a href="https://www.coursera.org/account/accomplishments/verify/FHQF6QU9FN48" target="_blank">University of Pennsylvania, AI in Education: Leveraging ChatGPT for Teaching</a></li>
-        <li><a href="https://skillshop.exceedlms.com/student/award/nfbi6joa6PGtVexrgHv59c4U" target="_blank">Google, Chromebooks for Educators</a></li>
-        <li><a href="https://skillshop.exceedlms.com/student/award/zZxqW4RQzKm9S3qWsZejXVGv" target="_blank">Google, Premium Teaching &amp; Learning Features</a></li>
-        <li><a href="https://skillshop.exceedlms.com/student/award/DVQHrUG2pLpENCxqYo5nKxSo" target="_blank">Google, Generative AI for Educators</a></li>
-      </ul>
-      <div id="popup">
-        <span id="popup-close">&times;</span>
-        <h3>Google Data Analytics Specialization Details</h3>
-        <p>Check out the specialization details on Coursera by clicking the link above.</p>
+      <h2>Experience</h2>
+      
+      <div class="experience-item" style="border-left-color: var(--accent-color);">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Data Analyst & Data Engineer</div>
+            <div class="job-company">Konecta Iberia</div>
+          </div>
+          <div class="job-date">Sep 2025 - Present</div>
+        </div>
+        <ul class="job-details">
+          <li><strong>BigQuery Architecture & Sizing:</strong> Spearheaded the migration from legacy spreadsheet systems to a centralized <strong>BigQuery Data Warehouse</strong>. Designed schema and partitioning strategies to unify data formats across campaigns.</li>
+          <li><strong>ETL & Data Ingestion:</strong> Engineered robust ETL pipelines using <strong>Python</strong> and <strong>Google Apps Script</strong>. Developed custom <strong>Web Scrapers/Crawlers</strong> to extract data from client sources lacking efficient reporting methods (API/CSV).</li>
+          <li><strong>Logic Standardization:</strong> Unified disparate calculation logic across various product lines using tools like <strong>DBeaver</strong> for rigorous testing and validation.</li>
+          <li><strong>Workflow Automation:</strong> Automating user provisioning and reporting workflows, reducing manual operational overhead.</li>
+        </ul>
       </div>
-      <div id="popup-overlay"></div>
+
+      <div class="experience-item">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Training Specialist and People Manager</div>
+            <div class="job-company">Konecta (NDA)</div>
+          </div>
+          <div class="job-date">Feb 2025 - Sep 2025</div>
+        </div>
+        <ul class="job-details">
+          <li><strong>Program Development:</strong> Established the foundational training framework for new energy service programs, setting standards for future intakes.</li>
+          <li><strong>Content Strategy:</strong> Designed and delivered comprehensive training materials and onboarding processes for consistent knowledge transfer.</li>
+          <li><strong>Performance Management:</strong> Implemented data-driven performance evaluation strategies and leadership coaching to improve team KPIs.</li>
+          <li><strong>Team Leadership:</strong> Managed teams and fostered employee development, serving as a bridge between Operations and Quality departments.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" style="border-left-color: #fdcb6e;">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Professional Development & Upskilling</div>
+            <div class="job-company">Self-Paced</div>
+          </div>
+          <div class="job-date">Nov 2024 - Feb 2025</div>
+        </div>
+        <ul class="job-details">
+          <li><strong>Tech Stack Expansion:</strong> Intensive study of new programming languages and technologies (Python, R) to transition into Data Engineering.</li>
+          <li><strong>Portfolio Building:</strong> Developed innovative programs showcased on GitHub to demonstrate practical application of coding skills.</li>
+          <li><strong>Certification:</strong> Completed the <strong>Google Data Analyst Professional Certificate</strong> to validate analytical expertise.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Corporate Trainer</div>
+            <div class="job-company">Foundever (Airbnb Global)</div>
+          </div>
+          <div class="job-date">Sep 2023 - Oct 2024</div>
+        </div>
+        <ul class="job-details">
+          <li><strong>Global Training Delivery:</strong> Designed and delivered training programs to enhance employee skills across multiple geographies (Hybrid model).</li>
+          <li><strong>Resource Creation:</strong> Created scalable materials like presentations, handouts, and e-learning modules.</li>
+          <li><strong>Impact Assessment:</strong> Evaluated training outcomes through feedback loops and performance metrics.</li>
+        </ul>
+      </div>
+
+       <div class="experience-item">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Team Coordinator</div>
+            <div class="job-company">Foundever (Airbnb Milan)</div>
+          </div>
+          <div class="job-date">Sep 2022 - Sep 2023</div>
+        </div>
+        <ul class="job-details">
+          <li><strong>Community Management:</strong> Coordinated a Google Space of 835 ambassadors, optimizing communication workflows.</li>
+          <li><strong>Quality Assurance:</strong> Led initiatives to identify software bugs, collect data samples, and refine product knowledge.</li>
+          <li><strong>Process Optimization:</strong> Simplified complex operational processes to enhance the ambassador and user experience.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Previous Roles</div>
+            <div class="job-company">Various</div>
+          </div>
+          <div class="job-date">2018 - 2022</div>
+        </div>
+        <ul class="job-details">
+          <li><strong>Senior Case Manager (Airbnb):</strong> Resolved high-priority conflict cases requiring rapid information synthesis (2019 - 2022).</li>
+          <li><strong>E&I Technician (SPIE Nederland):</strong> Executed Electronics & Instrumentation maintenance at DOW Chemical (2018 - 2019).</li>
+      </div>
     </section>
-    
-    <!-- Projects Section (with Additional Projects) -->
+
     <section id="projects" class="fade-in">
       <h2>Projects</h2>
-      <div class="project">
-        <h3>Etla-Bot</h3>
-        <p>
-          The <b>Etla-BOT</b> is a cutting-edge robotics project combining advanced obstacle detection, audio playback, and motor control, all powered by <b>Arduino technology</b>.
-        </p>
-        <p>
-          Designed and developed by a skilled team of electronics students at the Escola Tecnológica do Litoral Alentejano, this project showcases precision engineering, seamless integration, and practical applications in automation.
-        </p>
-        <div class="project-resources">
-          <a href="https://docs.google.com/presentation/d/1PQ_b34HxGlhA7VSXNhiLK3uxws30FviY2mHWcni65e8/edit?usp=sharing" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/732/732074.png" alt="Summary Icon" /> PowerPoint
-          </a>
-          <a href="https://drive.google.com/file/d/1vKq0xm7wGG_XNJZDICJFy7IAd8KrHFIT/view?usp=drive_link" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Video Icon" /> Video - Fase de Testes
-          </a>
-          <a href="https://drive.google.com/file/d/1CLqXmlX2vZFioytrqhHBfenadsT0dJeF/view?usp=drive_link" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Video Icon" /> Video - Funcionamento em Laboratório
-          </a>
+      <div class="projects-grid">
+        
+        <div class="project-card">
+          <div class="project-content">
+            <h3>YTVLC - Media Player</h3>
+            <p class="project-tech">PYTHON | TKINTER | FFMPEG</p>
+            <p>
+                A lightweight desktop application to stream and download content directly via API. 
+                Optimized for low CPU/RAM usage (ideal for gaming) and completely Ad-Free.
+            </p>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/itsiurisilva/YTVLC" target="_blank"><i class="fab fa-github"></i> Repository</a>
+          </div>
         </div>
-      </div>
-      <div class="project">
-        <h3>Open Ai Companion Project</h3>
-        <p>
-          A dynamic and interactive companion leveraging OpenAI's API to provide personalized insights and conversational experiences.
-        </p>
-        <div class="project-resources">
-          <a href="https://github.com/itsiurisilva/OpenAi-Companion" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" /> GitHub Repository
-          </a>
+
+        <div class="project-card">
+          <div class="project-content">
+            <h3>OpenAI Companion</h3>
+            <p class="project-tech">PYTHON | API INTEGRATION</p>
+            <p>A dynamic and interactive companion leveraging OpenAI's API to provide personalized insights and conversational experiences.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/itsiurisilva/OpenAi-Companion" target="_blank"><i class="fab fa-github"></i> Repository</a>
+          </div>
         </div>
-      </div>
-      <div class="project">
-        <h3>Portfolio</h3>
-        <p>
-          This project showcases my personal portfolio website. Explore the repository and, as an Easter Egg, try out a mini Snake game!
-        </p>
-        <div class="project-resources">
-          <a href="https://github.com/itsiurisilva/itsiurisilva.cv" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" /> GitHub Repository
-          </a>
-          <!-- Removed the Play Snake button from here -->
+
+        <div class="project-card">
+          <div class="project-content">
+            <h3>Etla-Bot (Robotics)</h3>
+            <p class="project-tech">C++ | ARDUINO | ELECTRONICS</p>
+            <p>Advanced robotics project featuring obstacle detection, motor control, and audio playback. Grade: 19/20.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://drive.google.com/file/d/1vKq0xm7wGG_XNJZDICJFy7IAd8KrHFIT/view?usp=drive_link" target="_blank"><i class="fas fa-video"></i> Demo</a>
+          </div>
         </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <h3>This Portfolio</h3>
+            <p class="project-tech">HTML5 | CSS3 | JS</p>
+            <p>Built from scratch to showcase skills. Includes hidden JS-based mini-games and responsive design.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/itsiurisilva/itsiurisilva.cv" target="_blank"><i class="fab fa-github"></i> Source</a>
+          </div>
+        </div>
+
       </div>
     </section>
-    
-    <!-- Languages Section -->
-    <section id="languages" class="fade-in">
-      <h2>Languages</h2>
-      <div class="language-proficiency">
-        <div class="language-bar">
-          <span style="width: 100%; background: var(--accent-color);">Portuguese - Native</span>
-        </div>
-        <div class="language-bar">
-          <span style="width: 100%; background: var(--accent-color);">English - Native</span>
-        </div>
-        <div class="language-bar">
-          <span style="width: 25%; background: var(--accent-color);">Dutch - Beginner</span>
-        </div>
-      </div>
+
+    <section id="certifications" class="fade-in">
+      <h2>Certifications</h2>
+      <ul class="cert-list">
+        <li class="cert-item">
+           <span class="cert-title"><i class="fab fa-google" style="color:var(--accent-color);"></i> Google Data Analytics Specialization</span>
+           <a href="https://www.coursera.org/account/accomplishments/specialization/1E0WHCJU2RTX" target="_blank" class="btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">Verify</a>
+        </li>
+        <li class="cert-item">
+           <span class="cert-title"><i class="fas fa-table" style="color:var(--accent-color);"></i> Google Sheets - Advanced Topics</span>
+           <a href="#" class="btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">View</a>
+        </li>
+        <li class="cert-item">
+            <span class="cert-title"><i class="fas fa-code" style="color:var(--accent-color);"></i> Data Analysis with R Programming</span>
+             <a href="https://www.coursera.org/account/accomplishments/records/OWSKG4E83WLE" target="_blank" class="btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">View</a>
+         </li>
+         <li class="cert-item">
+            <span class="cert-title"><i class="fab fa-python" style="color:var(--accent-color);"></i> Introduction to Programming Using Python</span>
+         </li>
+        <li class="cert-item">
+           <span class="cert-title"><i class="fas fa-brain" style="color:var(--accent-color);"></i> AI in Education: Leveraging ChatGPT (UPenn)</span>
+           <a href="https://www.coursera.org/account/accomplishments/verify/FHQF6QU9FN48" target="_blank" class="btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">Verify</a>
+        </li>
+         <li class="cert-item">
+            <span class="cert-title"><i class="fas fa-laptop" style="color:var(--accent-color);"></i> Chromebooks for Educators (Google)</span>
+            <a href="https://skillshop.exceedlms.com/student/award/nfbi6joa6PGtVexrgHv59c4U" target="_blank" class="btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">Verify</a>
+         </li>
+         <li class="cert-item">
+            <span class="cert-title"><i class="fas fa-chalkboard-teacher" style="color:var(--accent-color);"></i> Premium Teaching & Learning Features</span>
+            <a href="https://skillshop.exceedlms.com/student/award/zZxqW4RQzKm9S3qWsZejXVGv" target="_blank" class="btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">Verify</a>
+         </li>
+         <li class="cert-item">
+            <span class="cert-title"><i class="fas fa-robot" style="color:var(--accent-color);"></i> Generative AI for Educators (Google)</span>
+            <a href="https://skillshop.exceedlms.com/student/award/DVQHrUG2pLpENCxqYo5nKxSo" target="_blank" class="btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">Verify</a>
+         </li>
+      </ul>
     </section>
-    
-    <!-- References Section -->
-    <section id="references" class="fade-in">
-      <h2>References</h2>
-      <div class="quote-box">
-        <p>"Iuri is not only an exceptional human being, he is the go-to person for any training that will effectively allow you to perform at 100%."</p>
-        <span class="reference-author">- Samir Pala</span>
-      </div>
-      <div class="quote-box">
-        <p>"I can't say enough good things about Iuri. He is incredibly talented, easy to work with and always willing to lend a hand."</p>
-        <span class="reference-author">- Esmeralda Kassova Chikoti</span>
-      </div>
-      <div class="quote-box">
-        <p>"It is with the highest level of enthusiasm that I recommend Mr. Iuri Silva. His exceptional skills, tireless work ethic, and innovative approach consistently exceeded our expectations."</p>
-        <span class="reference-author">- Jesualdo Braga</span>
-      </div>
-      <div class="quote-box">
-        <p>"Having Iuri by your side is really a plus: always on top of anything that might be helpful in solving a problem, always ready with an answer to your question."</p>
-        <span class="reference-author">- Luca Valente</span>
-      </div>
-      <div class="quote-box">
-        <p>"Iuri is an exceptional manager and trainer who combines deep technical expertise with outstanding leadership skills."</p>
-        <span class="reference-author">- Valeria Mazza</span>
-      </div>
-      <a href="https://www.linkedin.com/in/itsiurisilva/details/recommendations" class="linkedin-button" target="_blank">View Full LinkedIn Recommendations</a>
-    </section>
-    
-    <!-- Contact Section -->
+
     <section id="contact" class="fade-in">
-      <h2>Contact Me</h2>
-      <form id="contact-form" action="https://formspree.io/f/meoekkwo" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required />
-  
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="_replyto" required />
-  
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-  
-        <button type="submit" class="btn">Send Message</button>
-      </form>
-    </section>
-    
-    <!-- New Games Section -->
-    <section id="games" class="fade-in">
-      <div class="container">
-        <h2>Extra</h2>
-        <button id="snake-button" class="btn">Play Snake</button>
-        <button id="dont-click-button" class="btn">Don't Click Here</button>
+      <h2>Get In Touch</h2>
+      <div class="contact-box">
+        <p style="font-size: 1.1rem; color: var(--text-muted);">
+            Interested in discussing data engineering, automation, or potential collaborations? 
+            Feel free to reach out via LinkedIn or Email.
+        </p>
+        <div class="contact-actions">
+            <a href="https://www.linkedin.com/in/itsiurisilva/" target="_blank" class="btn">
+                <i class="fab fa-linkedin"></i> Connect on LinkedIn
+            </a>
+            <a href="mailto:iurisilvaparticular@gmail.com" class="btn btn-outline">
+                <i class="fas fa-envelope"></i> Send Email
+            </a>
+        </div>
       </div>
     </section>
-  
-  </div>
-  
-  <footer>
-    <p>Contact: iurisilvaparticular@gmail.com | +351 937330080</p>
+    
+    <section id="games" style="text-align: center; margin-top: 5rem;">
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Warning: Experimental Zone</p>
+        <button id="snake-button" class="btn" style="background:#555;">Play Snake</button>
+        <button id="dont-click-button" class="btn" style="background:#d63031; margin-left: 10px;">DON'T CLICK</button>
+    </section>
+
+  </div> <footer>
+    <p>Iuri Silva &copy; 2026. Built with logic and creativity.</p>
   </footer>
-  
-  <!-- Back-to-top Button -->
-  <button id="back-to-top" aria-label="Scroll back to top">↑</button>
-  
-  <!-- Snake Game Modal (Easter Egg) -->
+
+  <button id="back-to-top" style="display:none; position:fixed; bottom:30px; right:30px; background:var(--accent-color); color:#fff; border:none; padding:15px; border-radius:50%; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.2); z-index:99;">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <div id="snake-modal">
     <div id="snake-modal-content">
-      <span id="snake-modal-close">&times;</span>
+      <div style="display:flex; justify-content:space-between; color:#fff; margin-bottom:10px;">
+        <span>SNAKE</span>
+        <span id="snake-modal-close" style="cursor:pointer;">&times;</span>
+      </div>
       <canvas id="snake-canvas" width="400" height="400"></canvas>
     </div>
   </div>
-  
+
   <script>
-    // Popup functionality for certifications
-    document.getElementById('google-cert').addEventListener('click', function(e) {
-      // Uncomment the line below if you prefer to show a popup instead of opening the link directly
-      // e.preventDefault();
-      document.getElementById('popup').style.display = 'block';
-      document.getElementById('popup-overlay').style.display = 'block';
-    });
-    function hidePopup() {
-      document.getElementById('popup').style.display = 'none';
-      document.getElementById('popup-overlay').style.display = 'none';
-    }
-    document.getElementById('popup-close').addEventListener('click', hidePopup);
-    document.getElementById('popup-overlay').addEventListener('click', hidePopup);
+    // --- Logic: UI & Interactions ---
     
-    // Back-to-top button functionality
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        backToTop.style.display = 'block';
+    // Typewriter Effect
+    const phrases = ["Data Analyst", "Data Engineer", "Automation Expert"];
+    let currentPhrase = 0;
+    let isDeleting = false;
+    let txt = '';
+    
+    function typeWriter() {
+      const fullTxt = phrases[currentPhrase];
+      if (isDeleting) {
+        txt = fullTxt.substring(0, txt.length - 1);
       } else {
-        backToTop.style.display = 'none';
+        txt = fullTxt.substring(0, txt.length + 1);
       }
-    });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    // Scroll animations using IntersectionObserver
-    document.addEventListener("DOMContentLoaded", function() {
+      
+      document.getElementById('dynamic-text').innerHTML = txt;
+      
+      let typeSpeed = 100;
+      if (isDeleting) typeSpeed /= 2;
+
+      if (!isDeleting && txt === fullTxt) {
+        typeSpeed = 2000; // Pause at end
+        isDeleting = true;
+      } else if (isDeleting && txt === '') {
+        isDeleting = false;
+        currentPhrase = (currentPhrase + 1) % phrases.length;
+        typeSpeed = 500;
+      }
+      
+      setTimeout(typeWriter, typeSpeed);
+    }
+
+    // Initialize Page
+    document.addEventListener("DOMContentLoaded", () => {
+      typeWriter();
+      
+      // Reveal Animation Observer
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.1 });
       
-      document.querySelectorAll('.fade-in').forEach(element => {
-        observer.observe(element);
-      });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     });
-    
-    // Navigation active link highlighting
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('nav a');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 60) {
-          current = section.getAttribute('id');
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-          link.classList.add('active');
-        }
-      });
+
+    // Hero Button Logic
+    document.getElementById('discover-more').addEventListener('click', () => {
+        const hero = document.getElementById('hero');
+        hero.style.transition = "transform 0.8s ease-in-out";
+        hero.style.transform = "translateY(-100vh)";
+        
+        setTimeout(() => {
+            document.getElementById('header').style.display = 'block';
+            document.getElementById('nav').style.display = 'flex';
+            hero.style.display = 'none';
+            window.scrollTo(0,0);
+        }, 800);
     });
-    
-    // Theme toggle functionality with dynamic icon update
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      if (document.body.classList.contains('dark-mode')) {
-        themeIcon.textContent = "☀"; // Sun icon for dark mode
-      } else {
-        themeIcon.textContent = "☾"; // Moon icon for light mode
-      }
-    });
-    
-    // Typewriter effect for dynamic hero text
-    document.addEventListener("DOMContentLoaded", function() {
-      const dynamicText = document.getElementById('dynamic-text');
-      const phrases = ["Data Analyst", "Trainer", "Tech Enthusiast"];
-      let currentPhrase = 0;
-      let currentLetter = 0;
-      let isDeleting = false;
-      const typeSpeed = 150;
-      const deleteSpeed = 100;
-      const pauseTime = 2000;
-      
-      function type() {
-        const current = phrases[currentPhrase];
-        if (isDeleting) {
-          currentLetter--;
-          dynamicText.textContent = current.substring(0, currentLetter);
-          if (currentLetter === 0) {
-            isDeleting = false;
-            currentPhrase = (currentPhrase + 1) % phrases.length;
-            setTimeout(type, typeSpeed);
-          } else {
-            setTimeout(type, deleteSpeed);
-          }
+
+    // Theme Toggle
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const icon = document.getElementById('theme-icon');
+        if(document.body.classList.contains('dark-mode')){
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
         } else {
-          currentLetter++;
-          dynamicText.textContent = current.substring(0, currentLetter);
-          if (currentLetter === current.length) {
-            isDeleting = true;
-            setTimeout(type, pauseTime);
-          } else {
-            setTimeout(type, typeSpeed);
-          }
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
         }
-      }
-      type();
     });
-    
-    // "Discover More" button:
-    // Hide the hero, show header and nav, then scroll to the top of the page
-    document.getElementById('discover-more').addEventListener('click', function(e) {
-      e.preventDefault();
-      const hero = document.getElementById('hero');
-      hero.style.transition = "opacity 0.5s ease-out";
-      hero.style.opacity = "0";
-      setTimeout(() => {
-        hero.style.display = "none";
-        // Show header and nav after hero is dismissed
-        document.getElementById('header').style.display = "block";
-        document.getElementById('nav').style.display = "flex";
-        // Scroll to top of the page so the header is fully visible
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 500);
+
+    // Back to Top
+    window.addEventListener('scroll', () => {
+        const btn = document.getElementById('back-to-top');
+        if (window.scrollY > 300) btn.style.display = 'block';
+        else btn.style.display = 'none';
     });
-    
-    // Snake game functionality
-    const snakeButton = document.getElementById('snake-button');
+    document.getElementById('back-to-top').onclick = () => window.scrollTo({top:0, behavior:'smooth'});
+
+    // --- Logic: Games ---
+
+    // 1. Snake Game
+    const snakeBtn = document.getElementById('snake-button');
     const snakeModal = document.getElementById('snake-modal');
-    const snakeModalClose = document.getElementById('snake-modal-close');
-    const canvas = document.getElementById('snake-canvas');
-    const ctx = canvas.getContext('2d');
-    let snake = [{x: 10, y:10}];
-    let snakeDirection = 'RIGHT';
-    let food = {x: 15, y: 15};
-    const gridSize = 20;
-    const tileCount = canvas.width / gridSize;
+    const closeSnake = document.getElementById('snake-modal-close');
+    const cvs = document.getElementById('snake-canvas');
+    const ctx = cvs.getContext('2d');
     let snakeInterval;
     
-    function gameLoop() {
-      updateSnake();
-      drawSnake();
-    }
-    function updateSnake() {
-      let head = {...snake[0]};
-      if(snakeDirection === 'RIGHT') head.x++;
-      else if(snakeDirection === 'LEFT') head.x--;
-      else if(snakeDirection === 'UP') head.y--;
-      else if(snakeDirection === 'DOWN') head.y++;
-      
-      // Wrap around the grid
-      if(head.x < 0) head.x = tileCount - 1;
-      if(head.x >= tileCount) head.x = 0;
-      if(head.y < 0) head.y = tileCount - 1;
-      if(head.y >= tileCount) head.y = 0;
-      
-      // Check self-collision
-      for(let cell of snake) {
-        if(cell.x === head.x && cell.y === head.y) {
-          resetSnakeGame();
-          return;
-        }
-      }
-      
-      snake.unshift(head);
-      if(head.x === food.x && head.y === food.y) {
-        placeFood();
-      } else {
-        snake.pop();
-      }
-    }
-    function drawSnake() {
-      // Clear canvas
-      ctx.fillStyle = "#000";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Draw snake
-      ctx.fillStyle = "#0f0";
-      for(let cell of snake) {
-        ctx.fillRect(cell.x * gridSize, cell.y * gridSize, gridSize-2, gridSize-2);
-      }
-      
-      // Draw food
-      ctx.fillStyle = "#f00";
-      ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize-2, gridSize-2);
-    }
-    function placeFood() {
-      food = {
-        x: Math.floor(Math.random() * tileCount),
-        y: Math.floor(Math.random() * tileCount)
-      };
-    }
-    function resetSnakeGame() {
-      snake = [{x: 10, y:10}];
-      snakeDirection = 'RIGHT';
-      placeFood();
-    }
+    // Game variables
+    let snake = [];
+    let food = {};
+    let d = "RIGHT";
+    const box = 20;
+
+    snakeBtn.onclick = () => {
+        snakeModal.style.display = 'block';
+        startSnake();
+    };
     
-    // Prevent arrow keys from scrolling the page when snake modal is open
-    document.addEventListener('keydown', function(e) {
-      if (snakeModal.style.display === 'block' && ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-        e.preventDefault();
-      }
-      if(e.key === "ArrowRight" && snakeDirection !== "LEFT") snakeDirection = "RIGHT";
-      else if(e.key === "ArrowLeft" && snakeDirection !== "RIGHT") snakeDirection = "LEFT";
-      else if(e.key === "ArrowUp" && snakeDirection !== "DOWN") snakeDirection = "UP";
-      else if(e.key === "ArrowDown" && snakeDirection !== "UP") snakeDirection = "DOWN";
-    });
-    
-    function startSnakeGame() {
-      resetSnakeGame();
-      snakeInterval = setInterval(gameLoop, 100);
-    }
-    function stopSnakeGame() {
-      clearInterval(snakeInterval);
-    }
-    
-    // Open Snake game modal on button click
-    snakeButton.addEventListener('click', function() {
-      snakeModal.style.display = 'block';
-      startSnakeGame();
-    });
-    // Close Snake game modal
-    snakeModalClose.addEventListener('click', function() {
-      snakeModal.style.display = 'none';
-      stopSnakeGame();
-    });
-    // Close modal if user clicks outside modal content
-    window.addEventListener('click', function(e) {
-      if(e.target === snakeModal) {
+    closeSnake.onclick = () => {
         snakeModal.style.display = 'none';
-        stopSnakeGame();
-      }
-    });
-    
-    // Space Invaders Easter Egg: "Don't Click Here" button
-    document.getElementById('dont-click-button').addEventListener('click', startSpaceInvaders);
-    
-    function startSpaceInvaders() {
-      // Hide the "Don't Click Here" button
-      document.getElementById('dont-click-button').style.display = 'none';
-      // Spawn 7 invaders
-      let invaders = [];
-      for (let i = 0; i < 7; i++) {
-        invaders.push(spawnInvader());
-      }
-      
-      // Every 1.5 seconds, each invader has a chance to shoot at a random target from .container
-      let shootingInterval = setInterval(() => {
-        let targets = Array.from(document.querySelectorAll('.container *')).filter(el => el.offsetParent !== null);
-        if (targets.length === 0) {
-          // If no targets remain, clear interval and remove invaders
-          clearInterval(shootingInterval);
-          invaders.forEach(inv => {
-            clearInterval(inv.movementInterval);
-            inv.element.remove();
-          });
-          return;
+        clearInterval(snakeInterval);
+    };
+
+    function startSnake() {
+        snake = [{x: 9 * box, y: 10 * box}];
+        food = {
+            x: Math.floor(Math.random() * 19 + 1) * box,
+            y: Math.floor(Math.random() * 19 + 1) * box
+        };
+        d = "RIGHT";
+        clearInterval(snakeInterval);
+        snakeInterval = setInterval(drawSnake, 100);
+    }
+
+    document.addEventListener("keydown", direction);
+    function direction(event) {
+        if(snakeModal.style.display !== 'block') return;
+        let key = event.keyCode;
+        if( key == 37 && d != "RIGHT") d = "LEFT";
+        else if(key == 38 && d != "DOWN") d = "UP";
+        else if(key == 39 && d != "LEFT") d = "RIGHT";
+        else if(key == 40 && d != "UP") d = "DOWN";
+    }
+
+    function drawSnake() {
+        ctx.fillStyle = "#2d3436";
+        ctx.fillRect(0, 0, cvs.width, cvs.height);
+
+        for(let i = 0; i < snake.length; i++){
+            ctx.fillStyle = (i == 0) ? "#0984e3" : "#74b9ff";
+            ctx.fillRect(snake[i].x, snake[i].y, box, box);
+            ctx.strokeStyle = "#2d3436";
+            ctx.strokeRect(snake[i].x, snake[i].y, box, box);
         }
-        invaders.forEach(inv => {
-          if (Math.random() < 0.5) { // 50% chance to shoot
-            let target = targets[Math.floor(Math.random() * targets.length)];
-            shootInvaderProjectile(inv.element, target);
-          }
-        });
-      }, 1500);
-    }
-    
-    function spawnInvader() {
-      let inv = document.createElement('div');
-      inv.className = 'invader';
-      inv.innerText = '👾';
-      inv.style.left = Math.random() * (window.innerWidth - 50) + 'px';
-      inv.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-      document.body.appendChild(inv);
-      let movementInterval = setInterval(() => {
-        inv.style.left = Math.random() * (window.innerWidth - 50) + 'px';
-        inv.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-      }, 2000);
-      return { element: inv, movementInterval: movementInterval };
-    }
-    
-    function shootInvaderProjectile(invader, target) {
-      let projectile = document.createElement('div');
-      projectile.className = 'projectile';
-      let words = ["Boom!", "Zap!", "Bang!"];
-      projectile.innerText = words[Math.floor(Math.random() * words.length)];
-      // Start at invader's center:
-      let invRect = invader.getBoundingClientRect();
-      let startX = invRect.left + invRect.width / 2;
-      let startY = invRect.top + invRect.height / 2;
-      projectile.style.left = startX + 'px';
-      projectile.style.top = startY + 'px';
-      document.body.appendChild(projectile);
-      
-      // Target center:
-      let targetRect = target.getBoundingClientRect();
-      let targetX = targetRect.left + targetRect.width / 2;
-      let targetY = targetRect.top + targetRect.height / 2;
-      
-      let dx = targetX - startX;
-      let dy = targetY - startY;
-      let distance = Math.sqrt(dx * dx + dy * dy);
-      let speed = 300; // pixels per second
-      let duration = distance / speed * 1000;
-      let startTime = null;
-      
-      function animate(timestamp) {
-        if (!startTime) startTime = timestamp;
-        let elapsed = timestamp - startTime;
-        let progress = elapsed / duration;
-        if (progress > 1) progress = 1;
-        let currentX = startX + dx * progress;
-        let currentY = startY + dy * progress;
-        projectile.style.left = currentX + 'px';
-        projectile.style.top = currentY + 'px';
-        if (progress < 1) {
-          requestAnimationFrame(animate);
+
+        ctx.fillStyle = "#e17055";
+        ctx.fillRect(food.x, food.y, box, box);
+
+        let snakeX = snake[0].x;
+        let snakeY = snake[0].y;
+
+        if(d == "LEFT") snakeX -= box;
+        if(d == "UP") snakeY -= box;
+        if(d == "RIGHT") snakeX += box;
+        if(d == "DOWN") snakeY += box;
+
+        if(snakeX == food.x && snakeY == food.y){
+            food = {
+                x: Math.floor(Math.random() * 19 + 1) * box,
+                y: Math.floor(Math.random() * 19 + 1) * box
+            }
         } else {
-          // On hit: add destruction animation to target then remove it
-          target.classList.add('destroyed');
-          setTimeout(() => {
-            target.remove();
-          }, 1000);
-          projectile.remove();
+            snake.pop();
         }
-      }
-      requestAnimationFrame(animate);
+
+        // Collision logic
+        if(snakeX < 0 || snakeX > cvs.width - box || snakeY < 0 || snakeY > cvs.height - box || collision(snakeX, snakeY, snake)){
+            clearInterval(snakeInterval);
+            alert("Game Over");
+            snakeModal.style.display = 'none';
+        }
+
+        let newHead = {x : snakeX, y : snakeY};
+        snake.unshift(newHead);
+    }
+
+    function collision(x, y, array){
+        for(let i = 0; i < array.length; i++){
+            if(x == array[i].x && y == array[i].y) return true;
+        }
+        return false;
+    }
+
+    // 2. Space Invaders (Chaos Mode)
+    document.getElementById('dont-click-button').addEventListener('click', function() {
+        this.style.display = 'none';
+        alert("Don't Stress. Defense Protocols Engaged. (JUST AN ANIMATION)");
+        startInvasion();
+    });
+
+    function startInvasion() {
+        // Spawn Invaders
+        for(let i=0; i<5; i++) {
+            let inv = document.createElement('div');
+            inv.className = 'invader';
+            inv.innerHTML = '<i class="fas fa-robot"></i>';
+            inv.style.color = '#ff7675';
+            inv.style.left = Math.random() * window.innerWidth + 'px';
+            inv.style.top = Math.random() * window.innerHeight + 'px';
+            document.body.appendChild(inv);
+
+            // Move randomly
+            setInterval(() => {
+                inv.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+                inv.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            }, 2000);
+
+            // Shoot
+            setInterval(() => {
+                shootElement(inv);
+            }, 1500 + Math.random() * 2000);
+        }
+    }
+
+    function shootElement(source) {
+        const targets = document.querySelectorAll('p, h2, h3, li');
+        if(targets.length === 0) return;
+        const target = targets[Math.floor(Math.random() * targets.length)];
+        
+        const rect = source.getBoundingClientRect();
+        const projectile = document.createElement('div');
+        projectile.className = 'projectile';
+        projectile.innerHTML = '.';
+        projectile.style.left = (rect.left + 20) + 'px';
+        projectile.style.top = (rect.top + 20) + 'px';
+        document.body.appendChild(projectile);
+
+        const targetRect = target.getBoundingClientRect();
+        
+        // Simple animation to target
+        projectile.style.transition = "all 0.5s linear";
+        setTimeout(() => {
+            projectile.style.left = (targetRect.left + targetRect.width/2) + 'px';
+            projectile.style.top = (targetRect.top + targetRect.height/2) + 'px';
+        }, 50);
+
+        setTimeout(() => {
+            projectile.remove();
+            target.classList.add('destroyed');
+            // Remove from DOM after animation
+            setTimeout(()=> target.style.visibility = "hidden", 500);
+        }, 550);
     }
   </script>
 </body>
