@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Iuri Silva — Data Analyst at Konecta Iberia. Power BI, Google Apps Script automation, Python, end-to-end reporting pipelines. Portfolio and CV." />
+  <meta name="description" content="Iuri Silva, Data Analyst at Konecta Iberia. Power BI, Google Apps Script automation, Python, end-to-end reporting pipelines. Portfolio and CV." />
   <meta name="author" content="Iuri Silva" />
   <meta property="og:title" content="Iuri Silva | Data Analyst" />
-  <meta property="og:description" content="Data Analyst — Power BI, Apps Script automation, Python. I turn messy operational data into systems people actually use." />
+  <meta property="og:description" content="Data Analyst: Power BI, Apps Script automation, Python. I turn messy operational data into systems people actually use." />
   <meta property="og:type" content="website" />
-  <title>Iuri Silva | Data Analyst — Power BI · Apps Script · Automation</title>
+  <title>Iuri Silva | Data Analyst: Power BI · Apps Script · Automation</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -260,22 +260,33 @@
       .print-contact { display: block !important; font-family: var(--mono); font-size: 8.5pt; color: #333; margin-bottom: 10pt; }
 
       /* CSS Grid can lose or misplace content when a page break falls mid-grid in
-         Chrome's print engine — switch every grid to flex-wrap for print only,
+         Chrome's print engine, so switch every grid to flex-wrap for print only,
          which paginates predictably. Screen layout (display:grid) is untouched. */
       .kpi-strip { display: flex !important; box-shadow: none; break-inside: avoid; page-break-inside: avoid; }
       .kpi { flex: 1 1 0; padding: 6pt 10pt; break-inside: avoid; page-break-inside: avoid; }
       .kpi .v { font-size: 11.5pt; white-space: nowrap; }
       .grid { display: flex !important; flex-wrap: wrap !important; gap: 8pt; }
-      .grid > .card { flex: 1 1 45%; }
+      .grid > .card { flex: 0 1 45%; }
       .cert-list { display: flex !important; flex-wrap: wrap !important; gap: 6pt; }
-      .cert-list > li { flex: 1 1 45%; }
+      .cert-list > li { flex: 0 1 45%; }
 
-      section { padding-top: 14pt; }
-      .sec-head { margin-bottom: 8pt; }
+      section { padding-top: 10pt; }
+      .sec-head { margin-bottom: 7pt; }
       .sec-head h2 { font-size: 13pt; }
+      .sec-head .tag { display: none; }   /* numbering has gaps once Journey is hidden, so drop it for print */
       .fade-in { opacity: 1 !important; transform: none !important; }
-      .xp, .card { box-shadow: none; break-inside: avoid; page-break-inside: avoid; padding: 8pt 12pt; margin-bottom: 8pt; }
-      .xp li, .card p { font-size: 9.5pt; }
+
+      /* Small cards (projects/skills) stay intact since they're cheap to keep whole.
+         Job entries are the opposite: forcing a big 6-bullet card to never
+         split pushes the WHOLE thing to the next page when it doesn't quite
+         fit, leaving a large blank gap behind it. Instead let it break
+         cleanly between bullets, keep the header glued to what follows it,
+         and only protect individual bullets from splitting mid-sentence. */
+      .card { box-shadow: none; break-inside: avoid; page-break-inside: avoid; padding: 8pt 12pt; margin-bottom: 6pt; }
+      .xp { box-shadow: none; padding: 8pt 12pt; margin-bottom: 6pt; }
+      .xp-head { break-after: avoid; page-break-after: avoid; }
+      .xp li { break-inside: avoid; page-break-inside: avoid; font-size: 9.5pt; }
+      .card p { font-size: 9.5pt; }
       #journey { display: none; }   /* keep the printed CV tight */
       .contact-box { box-shadow: none; padding: 10pt; }
       .contact-actions { display: none; }
@@ -304,10 +315,10 @@
   </nav>
 
   <header class="hero container">
-    <p class="eyebrow">// Barreiro, Portugal — open to hybrid &amp; remote</p>
+    <p class="eyebrow">// Barreiro, Portugal · open to hybrid &amp; remote</p>
     <h1>Iuri Silva</h1>
     <p class="role"><strong>Data Analyst</strong> at Konecta Iberia. I turn messy operational data into
-      systems people actually use — Sheets and Apps Script pipelines, Power BI models, and internal
+      systems people actually use: Sheets and Apps Script pipelines, Power BI models, and internal
       platforms built end-to-end.</p>
     <p class="print-contact">
       iurisilvaparticular@gmail.com &nbsp;·&nbsp; linkedin.com/in/itsiurisilva &nbsp;·&nbsp; github.com/itsiurisilva &nbsp;·&nbsp; Setúbal, Portugal
@@ -333,7 +344,7 @@
       <div class="sec-head"><span class="tag">01</span><h2>About</h2></div>
       <p class="lede">I'm a Data Analyst who starts with the problem, not the dashboard: what's actually
         going wrong here, and what data would prove it? That habit of digging until the real issue
-        surfaces — then building whatever's needed to fix it — comes from an engineering background
+        surfaces, then building whatever's needed to fix it, comes from an engineering background
         (Arduino, PLCs at <strong>ETLA</strong>) as much as from Apps Script pipelines and Power BI models at <strong>Konecta</strong>.</p>
       <p class="lede">If a process is manual, I ask why it still is. If the data to answer that doesn't
         exist yet, I build the pipeline that creates it.</p>
@@ -344,23 +355,23 @@
 
       <article class="xp current">
         <div class="xp-head">
-          <div><div class="xp-title">Data Analyst</div><div class="xp-org">Konecta Iberia — multi-project</div></div>
-          <div class="xp-date">Sep 2025 — Present</div>
+          <div><div class="xp-title">Data Analyst</div><div class="xp-org">Konecta Iberia, multi-project</div></div>
+          <div class="xp-date">Sep 2025 &ndash; Present</div>
         </div>
         <ul>
-          <li><strong>Own the full delivery pipeline:</strong> raw data into Sheets, automated and glued together with Apps Script, delivered as whatever format the audience actually opens — Looker Studio, a custom HTML dashboard, or Power BI.</li>
-          <li><strong>Diagnosed unreliable reporting:</strong> traced inconsistent numbers across brands and campaigns back to duplicated, conflicting calculation logic — then rebuilt the Power BI semantic model (star schema, unified logic layer) so every team reads from the same source of truth.</li>
+          <li><strong>Own the full delivery pipeline:</strong> raw data into Sheets, automated and glued together with Apps Script, delivered as whatever format the audience actually opens, whether that's Looker Studio, a custom HTML dashboard, or Power BI.</li>
+          <li><strong>Diagnosed unreliable reporting:</strong> traced inconsistent numbers across brands and campaigns back to duplicated, conflicting calculation logic, then rebuilt the Power BI semantic model (star schema, unified logic layer) so every team reads from the same source of truth.</li>
           <li><strong>Went beyond Sheets when the problem needed it:</strong> engineered custom Python and Apps Script scrapers for client sources with no API or usable export, and contributed to pushing the heaviest campaigns toward a centralized <strong>BigQuery</strong> warehouse once spreadsheets stopped scaling.</li>
           <li><strong>Found the operational gaps, shipped the fix:</strong> no SLA visibility → built a supervisor call-request system; no scalable way to certify agents → built a timed technical-assessment platform; no audit trail on coaching → built an action-plan tool with digital signatures. Each one taken end-to-end, from spotting the problem to running in production.</li>
           <li><strong>Uncovered blind spots in workforce planning:</strong> built Erlang-C-based WFM and capacity dashboards from Genesys Cloud and Five9 data to give supervisors visibility they didn't have across 14 market queues.</li>
-          <li><strong>Closed the real-time gap:</strong> supervisors had no live read on team status, so I designed and built a wall-mounted ops dashboard — including custom logic to make the raw event data trustworthy in the first place.</li>
+          <li><strong>Closed the real-time gap:</strong> supervisors had no live read on team status, so I designed and built a wall-mounted ops dashboard, including custom logic to make the raw event data trustworthy in the first place.</li>
         </ul>
       </article>
 
       <article class="xp">
         <div class="xp-head">
           <div><div class="xp-title">Training Specialist &amp; People Manager</div><div class="xp-org">Konecta</div></div>
-          <div class="xp-date">Feb 2025 — Sep 2025</div>
+          <div class="xp-date">Feb 2025 &ndash; Sep 2025</div>
         </div>
         <ul>
           <li>Established the training framework for a new energy-services program, setting the standard for future intakes.</li>
@@ -370,8 +381,8 @@
 
       <article class="xp">
         <div class="xp-head">
-          <div><div class="xp-title">Career Transition — Data Analytics</div><div class="xp-org">Self-directed</div></div>
-          <div class="xp-date">Nov 2024 — Feb 2025</div>
+          <div><div class="xp-title">Career Transition: Data Analytics</div><div class="xp-org">Self-directed</div></div>
+          <div class="xp-date">Nov 2024 &ndash; Feb 2025</div>
         </div>
         <ul>
           <li>Completed the <strong>Google Data Analytics Professional Certificate</strong>; intensive Python, R and SQL practice with portfolio projects on GitHub.</li>
@@ -381,7 +392,7 @@
       <article class="xp">
         <div class="xp-head">
           <div><div class="xp-title">Corporate Trainer</div><div class="xp-org">Foundever (Airbnb Global)</div></div>
-          <div class="xp-date">Sep 2023 — Oct 2024</div>
+          <div class="xp-date">Sep 2023 &ndash; Oct 2024</div>
         </div>
         <ul>
           <li>Designed and delivered hybrid training programs across multiple geographies; measured outcomes through feedback loops and performance metrics.</li>
@@ -391,7 +402,7 @@
       <article class="xp">
         <div class="xp-head">
           <div><div class="xp-title">Team Coordinator</div><div class="xp-org">Foundever (Airbnb Milan)</div></div>
-          <div class="xp-date">Sep 2022 — Sep 2023</div>
+          <div class="xp-date">Sep 2022 &ndash; Sep 2023</div>
         </div>
         <ul>
           <li>Coordinated a community of 835 ambassadors; led QA initiatives on bug identification and data sampling.</li>
@@ -401,7 +412,7 @@
       <article class="xp">
         <div class="xp-head">
           <div><div class="xp-title">Earlier Roles</div><div class="xp-org">Airbnb · SPIE Nederland</div></div>
-          <div class="xp-date">2018 — 2022</div>
+          <div class="xp-date">2018 &ndash; 2022</div>
         </div>
         <ul>
           <li><strong>Senior Case Manager (Airbnb, 2019–2022):</strong> resolved high-priority conflict cases requiring rapid information synthesis.</li>
@@ -414,13 +425,13 @@
       <div class="sec-head"><span class="tag">03</span><h2>Projects</h2></div>
       <div class="grid">
         <div class="card">
-          <h3>sDeck — Self-Hosted Stream Deck</h3>
+          <h3>sDeck: Self-Hosted Stream Deck</h3>
           <p class="tech">JAVASCRIPT · SELF-HOSTED · OBS/TWITCH</p>
-          <p>DIY Stream Deck that runs fully local on the network — triggers app shortcuts, volume and macros, plus OBS Studio and Twitch controls, from any device on the Wi-Fi.</p>
+          <p>DIY Stream Deck that runs fully local on the network, triggering app shortcuts, volume and macros, plus OBS Studio and Twitch controls, from any device on the Wi-Fi.</p>
           <p class="links"><a href="https://github.com/itsiurisilva/sDeck" target="_blank" rel="noopener">Repository →</a></p>
         </div>
         <div class="card">
-          <h3>YTVLC — Media Player</h3>
+          <h3>YTVLC: Media Player</h3>
           <p class="tech">PYTHON · TKINTER · FFMPEG</p>
           <p>Lightweight desktop app to stream and download media via API. Low CPU/RAM footprint, ad-free.</p>
           <p class="links"><a href="https://github.com/itsiurisilva/YTVLC" target="_blank" rel="noopener">Repository →</a></p>
@@ -428,7 +439,7 @@
         <div class="card">
           <h3>OpenAI Companion</h3>
           <p class="tech">PYTHON · OPENAI API · MOBILE</p>
-          <p>Turns a phone into an AI companion for the PC — conversational, personalized responses via the OpenAI API.</p>
+          <p>Turns a phone into an AI companion for the PC, with conversational, personalized responses via the OpenAI API.</p>
           <p class="links"><a href="https://github.com/itsiurisilva/OpenAi-Companion" target="_blank" rel="noopener">Repository →</a></p>
         </div>
         <div class="card">
@@ -444,7 +455,7 @@
           <p class="links"><a href="https://github.com/itsiurisilva" target="_blank" rel="noopener">GitHub →</a></p>
         </div>
         <div class="card">
-          <h3>Etla-Bot — Robotics</h3>
+          <h3>Etla-Bot: Robotics</h3>
           <p class="tech">C++ · ARDUINO · ELECTRONICS</p>
           <p>Robotics project with obstacle detection, motor control and audio playback. Final grade: 19/20.</p>
           <p class="links"><a href="https://drive.google.com/file/d/1vKq0xm7wGG_XNJZDICJFy7IAd8KrHFIT/view?usp=drive_link" target="_blank" rel="noopener">Demo video →</a></p>
@@ -504,12 +515,12 @@
         <div class="tl-item">
           <span class="tl-year">AGE 12</span>
           <h3>Hardware DIY</h3>
-          <p>A kids' programming course led me to MSP430 microcontrollers salvaged from Texas Instruments calculators — my first mini-games.</p>
+          <p>A kids' programming course led me to MSP430 microcontrollers salvaged from Texas Instruments calculators for my first mini-games.</p>
         </div>
         <div class="tl-item">
           <span class="tl-year">AGE 16</span>
           <h3>ETLA</h3>
-          <p>Escola Tecnológica do Litoral Alentejano: from microcontrollers to industrial automation — Arduino, Raspberry Pi, PLCs.</p>
+          <p>Escola Tecnológica do Litoral Alentejano, moving from microcontrollers to industrial automation with Arduino, Raspberry Pi, and PLCs.</p>
         </div>
         <div class="tl-item">
           <span class="tl-year">NOW</span>
@@ -522,11 +533,11 @@
     <section id="certifications" class="fade-in">
       <div class="sec-head"><span class="tag">06</span><h2>Certifications</h2></div>
       <ul class="cert-list">
-        <li><span>COPC® High Performance Management Techniques — Certified Professional Manager <span style="color:var(--muted); font-size:.85em;">(COPC Inc., 2026)</span></span> <a href="https://pdf.credential.net/s981sk9d_1771781704356.pdf" target="_blank" rel="noopener">VERIFY</a></li>
+        <li><span>COPC® High Performance Management Techniques: Certified Professional Manager <span style="color:var(--muted); font-size:.85em;">(COPC Inc., 2026)</span></span> <a href="https://pdf.credential.net/s981sk9d_1771781704356.pdf" target="_blank" rel="noopener">VERIFY</a></li>
         <li>Google Data Analytics Specialization <a href="https://www.coursera.org/account/accomplishments/specialization/1E0WHCJU2RTX" target="_blank" rel="noopener">VERIFY</a></li>
         <li>Data Analysis with R Programming <a href="https://www.coursera.org/account/accomplishments/records/OWSKG4E83WLE" target="_blank" rel="noopener">VERIFY</a></li>
         <li>Introduction to Programming Using Python</li>
-        <li>Google Sheets — Advanced Topics</li>
+        <li>Google Sheets: Advanced Topics</li>
         <li>AI in Education: Leveraging ChatGPT for Teaching (UPenn) <a href="https://www.coursera.org/account/accomplishments/verify/FHQF6QU9FN48" target="_blank" rel="noopener">VERIFY</a></li>
         <li>Generative AI for Educators (Google) <a href="https://skillshop.exceedlms.com/student/award/DVQHrUG2pLpENCxqYo5nKxSo" target="_blank" rel="noopener">VERIFY</a></li>
         <li>Chromebooks for Educators (Google) <a href="https://skillshop.exceedlms.com/student/award/nfbi6joa6PGtVexrgHv59c4U" target="_blank" rel="noopener">VERIFY</a></li>
@@ -548,7 +559,7 @@
   </main>
 
   <footer>
-    <p>Iuri Silva © 2026 — built with logic and curiosity.</p>
+    <p>Iuri Silva © 2026. Built with logic and curiosity.</p>
     <p class="egg">// bored? <a id="snake-button">play snake</a></p>
   </footer>
 
@@ -556,13 +567,13 @@
 
   <div id="snake-modal" role="dialog" aria-label="Snake game">
     <div id="snake-modal-content">
-      <div class="bar"><span>SNAKE — arrow keys</span><span id="snake-modal-close" style="cursor:pointer;">✕</span></div>
+      <div class="bar"><span>SNAKE · arrow keys</span><span id="snake-modal-close" style="cursor:pointer;">✕</span></div>
       <canvas id="snake-canvas" width="400" height="400"></canvas>
     </div>
   </div>
 
   <script>
-    // Theme toggle (persisted) — defaults to light unless the visitor has explicitly chosen dark before
+    // Theme toggle (persisted): defaults to light unless the visitor has explicitly chosen dark before
     const toggleBtn = document.getElementById('theme-toggle');
     if (localStorage.getItem('theme') === 'dark') {
       document.body.classList.add('dark-mode');
